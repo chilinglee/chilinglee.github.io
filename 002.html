@@ -7,27 +7,135 @@
     <title>Document</title>
     <link rel="stylesheet" href="Reset.css">
     <style>
-        *{
-            background-color: black;
+          *{
+        margin: 0;
+        padding: 0;
+        list-style: none;
         }
-        div{
-            background-color: chartreuse;
+        .btn{
+            display: inline-block;
+            border: 1px solid #aaa;
+            background-color: #eee;
+            padding: 0 1em;
+            line-height: 1.5em;
         }
-        div h1{
-            color: cornsilk;
-            text-align: center;
+        a.btn{
+            /* background-color: transparent;
+            border-color: transparent; */
         }
-        div p{
-            background-color: coral;
-        } 
+        .jill-list{
+            counter-reset: my-area 7;
+        }
+        .jill-list-item::before{
+            content: counter(my-area) '. ';
+            counter-increment: my-area 1;
+        }
+        a::after{
+            content: attr(data-note);
+            color: #aaa;
+        }
+
+        .BG-gray-T-red::selection{
+            color:brown;
+            background-color: cyan;
+        }
+        input{
+            caret-color: #fa0;
+        }
+        input::selection{
+            color: #fa0;
+        }
+        span{
+            -webkit-text-emphasis:'*';
+            text-emphasis: '*';
+        }
+        span::selection{
+            -webkit-text-emphasis-color: red;
+            background-color: #ffa
+        }
+        .firstletter p::before{
+            content:'';
+            position: absolute;
+            width: 4em;
+            height: 4em;
+            background-color:pink;
+            left: 0;
+            top: -5px; 
+            /* top: -5px;表示在框框上5px */
+            z-index: -1;
+            border-radius: 50%;
+        }
+        .firstletter p{
+            font-size: 16px;
+            line-height: 1.7;
+            position:relative;
+        }
+        .firstletter p::first-letter{
+            font-size: 48px;
+            float: left;
+            line-height: .7;
+            margin: .2em;
+            position: relative;
+            z-index: 1;
+        }
+        article p:nth-of-type(1){
+            font-size: 20px;
+            padding: 1em;
+            border: 1px solid #aaa;
+        }
 
     </style>
 </head>
 <body>
-    <div>
-        <h1>title</h1>
-        警方數碼相機對手無奈金融測試支持兩位多<span>種請問屏幕教育活動</span>，按鈕網站告訴我傢俱可用新型總部幫助經營許可證，和我彼此支付這段感興趣資格，無線常常少年錯誤您是走向呼吸股市常常股市楠雅平台湖口最新，廣告恐怖文字臺灣民眾你有聊天新浪都要這裡進步感到兩人，支持一下子。
+    
+    <button class="btn">放入願望清單</button>
+    <a class="btn" href="#">加入購物車</a>
+    <input class="btn" type="submit" value="送出">
+    
 
+    <div class="jill-list">
+        <div class="jill-list-item">a</div>
+        <div class="jill-list-item">b</div>
+        <div class="jill-list-item">c</div>
+        <div class="jill-list-item">d</div>
+        <div class="jill-list-item">e</div>
+        <div class="jill-list-item">f</div>
     </div>
+
+    <a href="https://csscoke.com" target="_blank" data-note="此連結另開視窗">
+        CSS coke
+    </a>
+    
+    <p>我沒有設定選與效果，色彩由瀏覽器內定</p>
+    <p class="BG-gray-T-red">我選取狀態下色彩由我決定，背景變灰，文字變紅</p>
+
+    <input type="text" name="" id="">
+    <p>Amos 所撰寫與錄製的<span>金魚都能懂的 CSS 選取器</span>真是太棒了！這樣的好文應該用力給它訂閱下去啊，林貢丟無丟啊！！！</p>
+    
+    <div class="firstletter">
+        <p>危險點此也沒首頁升級兒子，從此一切方面厲害放在你的批發先進教育故意管理系統為您，吸收期限地位未來任務受傷，資源機票大學私服沒有任何沒有任何，準備文件是我千萬一部分手段求購資料庫根據公主，高興論壇更加哈哈隱藏版受傷講話中文加入樂隊防治措施，上午人才，發言上。</p>
+        <p>適用夢幻三大看起來台北皇帝，咱們立刻有很多供求輕易緊張並不是都能人們，召開申請我真，文件大小防止音樂眾多流程唱片加盟真實突然，同一金幣網際快車，一句話道德不多快車共享版區域推出一句話它的列表，實際個性當初下午告訴你恐怖一部，像是感興趣播放，電視劇女生，第。</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi eligendi beatae provident velit eius assumenda. Placeat dolorum repellat ex tempora dolores tenetur sapiente commodi laudantium ratione, perspiciatis, tempore odit ducimus.</p>
+    </div>
+
+    <form>
+        username:<input type="text" id="user_name" class="input_text"><br>
+        password:<input type="password" id="user_password" class="input_text"><br>
+        <br>
+        <input type="submit" value="送出">
+    </form>
+
+    <article>
+        <h1>
+            <a href="">金魚都懂的這個網頁畫面怎麼切</a>
+        </h1>
+        <p>「<a href="https://www.youtube.com/playlist?list=PLqivELodHt3hxeuLX8PYaI8u1GcDaBoJo">金魚都能懂的這個網頁怎麼切</a>」是 IThome 鐵人賽的主題，也是一個實用且完整的免費教學影片，主要訴求在簡單快速將一個網頁畫面完成，但也由於時間有限，所以沒有處理RWD部分，留給廣大網友腦補囉。</p>
+        <p>金魚都懂的這個網頁畫面怎麼切，基本上是基於「<a href="https://www.youtube.com/playlist?list=PLqivELodHt3iL9PgGHg0_EF86FwdiqCre">金魚都懂的網頁設計入門</a>」所開發的新的金魚系列教學影片，內容雖然是走實戰部分，但由於還是針對新手所開發的教學內容，所以難度依舊走簡單上手來規劃，對新手算是親和力高的一個切版實戰教學影片</p>
+        <p>金魚教學系列的出發點就在於讓新手也能快速了解各種必備的網頁入門知識，所以為了針對一些新手對 CSS 選取器不熟的困擾，Amos 又再次規劃了「<a href="https://ithelp.ithome.com.tw/users/20112550/ironman/2799">金魚都能懂的 CSS 選取器 系列</a>」讓新手能夠一次看完一些必學的 CSS 選取器，金魚教學系列不僅免費以外，Amos 還有直播「<a href="https://www.youtube.com/playlist?list=PLqivELodHt3igUDMZVPK_Z5rLbhSg1ZvB">大師常來聊</a>」系列影，內容是針對新手與老手都適宜的方向所規劃，節目中安排了一些業界大師來分享不同主題，並提供觀眾與講者之間的互動與解惑，同樣! 免費!!!</p>
+        <p>如何快速獲得這些免費資訊? 最簡單的方式就是訂閱 CSScoke 的頻道，切記除了訂閱以外，旁邊有一顆小鈴鐺也要按下，這樣才會在第一時間收到 Amos 的影片上架通知與直播通知喔。重點是!!!訂閱依舊免費!!</p>
+        <p>本文是配合<a href="https://ithelp.ithome.com.tw/articles/10227242">此教學文章</a>使用的範例，但內容文字所提的都是真實的呦。</p>
+    </article>
+
+    
 </body>
 </html>
