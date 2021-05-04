@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黃阿瑪的後宮生活｜Fumeancats 官方網站</title>
+    <script src="https://kit.fontawesome.com/de0f812dc0.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+        *{
+            font-family: "andy-money", system-ui, "-apple-system", "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Noto Sans", "Noto Sans TC", "Noto Sans SC", "sans-serif";
+        }
+        body{
+            /* position: relative; */
+            width: 960px;
+            margin: auto;
+        }
+        .header{
+            width: 960px;
+            margin:auto;
+            height: 105px;
+            background-color: white;
+            opacity: 0.9;
+            position: fixed;
+            z-index: 99999;
+        }
+        nav{
+            height: 30px;
+            padding-top: 5px;
+            text-align: end;
+            position: relative; /* 當.toplayer img 的基準 */
+        }
+        nav a{
+            display: inline-block;
+            padding: 5px;
+            color: #000;
+            font-size: 16px;
+            margin: 5px 10px 0px 0px;
+            padding-right: 8px;
+            text-decoration: none;
+        }
+        .toplayer{
+            margin: auto;
+            margin-top: 25px;
+            
+        }
+        .toplayer ul{
+            display: flex;
+            justify-content:center;
+        }
+        .toplayer img{
+            width: 60px;
+            height: 60px;
+            position: absolute; /* 把nav當基準 */
+            left: 10px;
+            top: 20px;
+        }
+        .toplayer a{
+            display: inline-block;
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            margin: 5px;
+            
+        }
+        .banner{
+            text-align: center;
+        }
+        .banner img{
+            width: 100%;
+            margin-top: 105px;
+        }
+        h2{
+            text-align: center;
+            color: #666;
+            font-size: 22px;
+            position: relative;
+            padding: 20px 20px 20px;
+        }
+        .bar{
+            width: 25px;
+            height: 2px;
+            background-color: #FDD000;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+        .container{
+            width: 960px;
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+            
+        }
+        .item {
+            width: 210px;
+            margin: 5px 15px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .item img{
+            width: 100%;
+            height: 210px;
+        }
+        input{
+            height: 40px;
+            width: 190px;
+            position: absolute;
+            top: 160px;
+            display: none;
+            z-index: 999;
+            left: 11px;
+        }
+        .trans{
+            width: 100%;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+        }
+        .item:hover::after{
+            position: absolute;
+            top: 0;
+            content: " ";
+            width: 210px;
+            height: 210px;
+            background-color: black;
+            opacity: 0.6;
+            z-index: 99;
+            cursor: pointer;
+            
+        }
+        .item:hover input{
+            display: block;
+            cursor: pointer;
+        }
+        .item:hover .trans{
+            display: block;
+            transition: 0.5s;
+            z-index: 40;
+            opacity: 1;
+        }
+        input:hover{
+            background-color: #FDD000;
+            color: aliceblue;
+            transition: 0.2s;
+        }
+        .item a{
+            text-decoration: none;
+        }
+        .text *{
+            text-align: center;
+            margin: 10px;
+            color: #333;
+            font-size: 14px;
+        }
+        .text p {
+            font-size: 18px;
+            color:#FDD000;
+        }
+        .page{
+            text-align: center;
+            height: 100px;
+        }
+        .page a{
+            display:inline-block;
+            font-size: 16px;
+            width: 20px;
+            height: 22px;
+            color: #333;
+            text-decoration: none;
+            margin: 39px 0px;
+        }
+        .page a:not(:first-child):hover{
+            color: #c74060;
+        }
+        .page  a:first-child{
+            border-bottom: #FDD000 2px solid;
+        }
+        .info{
+            width: 960px;
+            margin: auto;
+            border-top: #aaa solid 1px;
+            display: flex;
+            padding: 30px 0px;
+        }
+        .col{
+            margin: auto;
+            margin-left: 10px;
+            text-align: left;
+            font-size: 16px;
+        }
+        .col>h3, .col>h3>a{
+            padding-top: 20px;
+            font-size: 20px;
+            padding-bottom: 10px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .col p>a, .col p{
+            text-decoration: none;
+            padding-bottom: 10px;
+            color: #666;
+        }
+        .footer{
+            width: 960px;
+            height: 60px;
+            text-align: center;
+            margin: auto;
+            background-color: #eee;
+        }
+        .footer p{
+            display: inline-block;
+            height: 20px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav>
+            <a href="#"><i class="fas fa-globe"></i> 繁體中文</a>
+            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="#"><i class="fas fa-comment"></i></a>
+            <a href="#"><i class="fas fa-user"></i></a>
+            <a href="#"><i class="fas fa-shopping-bag"></i></a>
+        </nav>
+        <div class="toplayer">
+            <ul>
+                <li><img src="https://img.shoplineapp.com/media/image_clips/60877c91e67283002f8ab371/original.png?1619491985" alt=""></li>
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">品牌故事</a></li>
+                <li><a href="#">所有商品</a></li>
+                <li><a href="#">居家生活</a></li>
+                <li><a href="#">玩具公仔</a></li>
+                <li><a href="#">瑪瑪書店</a></li>
+                <li><a href="#">手機周邊</a></li>
+                <li><a href="#">不想運動運動會</a></li>
+                <li><a href="#">Socles黑漆漆生日館</a></li> 
+            </ul>
+        </div>
+    </div>
+    <div class="banner">
+        <img src="https://shoplineimg.com/5cf4a5bd4956340001e08e0d/6037694d61a190002384aa22/1520x.webp?source_format=jpg">
+    </div>
+
+    <!-- 第一塊 新品上市 -->
+    <div class="new">
+        <h2>新品上市</h2>
+        <div class="bar"></div>
+    </div>
+    <div class="container">
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=8">
+                <img src="https://picsum.photos/300/300/?random=18" class="trans">
+                <input type="button" value="加入購物車" >
+                <div class="text">
+                    <h3>手中點這裡下載，重。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=9">
+                <img src="https://picsum.photos/300/300/?random=18" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>不怕對她百度電源改。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                    <img src="https://picsum.photos/300/300/?random=10">
+                    <img src="https://picsum.photos/300/300/?random=19" class="trans">
+                    <input type="button" value="加入購物車">
+                    <div class="text">
+                        <h3>百度簽名首頁，感情。</h3>
+                        <p>NT1688</p>
+                    </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=11">
+                <img src="https://picsum.photos/300/300/?random=110" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>得知百萬表達位置寶。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=12">
+                <img src="https://picsum.photos/300/300/?random=1" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>基隆分公司簡單，幽。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=13">
+                <img src="https://picsum.photos/300/300/?random=2" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>興奮功能，不得周邊。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=14">
+                <img src="https://picsum.photos/300/300/?random=3" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>發表甚至產品，如同。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=15">
+                <img src="https://picsum.photos/300/300/?random=4" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>當天讀者，貿易周圍。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="page">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">»</a>
+    </div>
+
+    <!-- 第二塊 不想運動運動會 lazy -->
+    <div class="product_title">
+        <h2>不想運動運動會</h2>
+        <div class="bar"></div>
+    </div>
+    <div class="container">
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=8">
+                <img src="https://picsum.photos/300/300/?random=7" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>手中點這裡下載，重。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=19">
+                <img src="https://picsum.photos/300/300/?random=8" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>不怕對她百度電源改。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                    <img src="https://picsum.photos/300/300/?random=1">
+                    <img src="https://picsum.photos/300/300/?random=9" class="trans">
+                    <input type="button" value="加入購物車">
+                    <div class="text">
+                        <h3>百度簽名首頁，感情。</h3>
+                        <p>NT1688</p>
+                    </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=31">
+                <img src="https://picsum.photos/300/300/?random=10" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>得知百萬表達位置寶。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=32">
+                <img src="https://picsum.photos/300/300/?random=31" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>基隆分公司簡單，幽。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=63">
+                <img src="https://picsum.photos/300/300/?random=52" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>興奮功能，不得周邊。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=74">
+                <img src="https://picsum.photos/300/300/?random=83" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>發表甚至產品，如同。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=45">
+                <img src="https://picsum.photos/300/300/?random=74" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>當天讀者，貿易周圍。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="page">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">»</a>
+    </div>
+
+    <!-- 第三塊 手機殼 case-->
+    <div class="product_title">
+        <h2>CreASEnse</h2>
+        <div class="bar"></div>
+    </div>
+    <div class="container">
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=28">
+                <img src="https://picsum.photos/300/300/?random=7" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>手中點這裡下載，重。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=39">
+                <img src="https://picsum.photos/300/300/?random=8" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>不怕對她百度電源改。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                    <img src="https://picsum.photos/300/300/?random=10">
+                    <img src="https://picsum.photos/300/300/?random=49" class="trans">
+                    <input type="button" value="加入購物車">
+                    <div class="text">
+                        <h3>百度簽名首頁，感情。</h3>
+                        <p>NT1688</p>
+                    </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=11">
+                <img src="https://picsum.photos/300/300/?random=50" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>得知百萬表達位置寶。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=12">
+                <img src="https://picsum.photos/300/300/?random=71" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>基隆分公司簡單，幽。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=18">
+                <img src="https://picsum.photos/300/300/?random=21" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>興奮功能，不得周邊。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=44">
+                <img src="https://picsum.photos/300/300/?random=43" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>發表甚至產品，如同。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=75">
+                <img src="https://picsum.photos/300/300/?random=74" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>當天讀者，貿易周圍。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="page">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">»</a>
+    </div>
+
+    <!-- 第四塊 寢具組 bed-->
+    <div class="product_title">
+        <h2>聯名寢具</h2>
+        <div class="bar"></div>
+    </div>
+    <div class="container">
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=0">
+                <img src="https://picsum.photos/300/300/?random=5" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>手中點這裡下載，重。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=7">
+                <img src="https://picsum.photos/300/300/?random=6" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>不怕對她百度電源改。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                    <img src="https://picsum.photos/300/300/?random=18">
+                    <img src="https://picsum.photos/300/300/?random=67" class="trans">
+                    <input type="button" value="加入購物車">
+                    <div class="text">
+                        <h3>百度簽名首頁，感情。</h3>
+                        <p>NT1688</p>
+                    </div>
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <img src="https://picsum.photos/300/300/?random=39">
+                <img src="https://picsum.photos/300/300/?random=48" class="trans">
+                <input type="button" value="加入購物車">
+                <div class="text">
+                    <h3>得知百萬表達位置寶。</h3>
+                    <p>NT1688</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="page">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">»</a>
+    </div>
+
+    <div class="info">
+        <div class="col">
+            <h3>相關資訊</h3>
+            <p><a href="#">品牌故事</a></p>
+            <p><a href="#">退貨退款須知</a></p>
+            <p><a href="#">會員招募</a></p>
+            <p><a href="#">常見問題</a></p>
+            <p><a href="#">反詐騙公告</a></p>
+        </div>
+
+        <div class="col">
+            <h3><a href="#">聯繫我們</a></h3>
+            <p>服務時間：週一至週五 10:00-18:30</p>
+            <p><a href="#">LINE@閒聊區（只有阿瑪在，小幫手不在）</a></p>
+            <p>客服信箱 ：fumeanstore@gmail.com</p>
+            <p>授權合作信箱 ：fumeanstudio@gmail.com</p>
+            <p>批發合作信箱 ：fumeancats@gmail.com</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>黃阿瑪的後宮生活© 2019 FUMEANCATS .All Rights Reserved.</p>
+    </div>
+</body>
+</html>
