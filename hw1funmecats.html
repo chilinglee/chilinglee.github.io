@@ -40,8 +40,8 @@
             padding-right: 8px;
             text-decoration: none;
         }
-        nav a:hover, nav i:hover{
-            color: gray;
+        a:not(.item):hover, i:hover{
+            color: grey;
         }
         .toplayer{
             margin: auto;
@@ -98,6 +98,7 @@
             margin: 5px 15px;
             box-sizing: border-box;
             position: relative;
+            font-family: Arial, Helvetica, sans-serif; 
         }
         .item img{
             width: 100%;
@@ -155,7 +156,7 @@
             font-size: 14px;
         }
         .text p {
-            font-size: 18px;
+            font-size: 16px;
             color:#FDD000;
         }
         .page{
@@ -171,9 +172,13 @@
             text-decoration: none;
             margin: 39px 0px;
         }
+        .page a:hover{
+            color: #333;
+        }
         .page a:not(:first-child):hover{
             color: #c74060;
         }
+        
         .page  a:first-child{
             border-bottom: #FDD000 2px solid;
         }
@@ -203,7 +208,7 @@
         .col p>a, .col p{
             text-decoration: none;
             padding-bottom: 10px;
-            color: #666;
+            color: rgb(88, 88, 88);
             /* margin-left: 10px; */
         }
         .footer{
