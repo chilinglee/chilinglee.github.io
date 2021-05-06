@@ -10,6 +10,7 @@
     <style>
         *{
             font-family: "andy-money", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Ubuntu", "Cantarell", "Noto Sans", "Noto Sans TC", "Noto Sans SC", "sans-serif";
+            /* outline: #c74060 1px solid; */
         }
         body{
             width: 960px;
@@ -43,24 +44,25 @@
         }
         .toplayer{
             margin: auto;
-            margin-top: 25px;
+            /* margin-top: 25px; */
             display: flex;
             justify-content:center;
-            
+            position: relative;
         }
-        .toplayer img{
+        .logo{
             width: 60px;
             height: 60px;
-            position: absolute; /* header當基準 */
-            left: 10px;
-            top: 20px;
+            position: absolute; 
+            left:20px;
         }
         .toplayer a{
+            line-height: 80px;
             display: inline-block;
             text-decoration: none;
             color: #333;
             font-size: 16px;
             margin: 5px;
+            vertical-align: bottom;
             
         }
         .banner{
@@ -97,6 +99,9 @@
             box-sizing: border-box;
             position: relative;
             font-family: Arial, Helvetica, sans-serif; 
+        }
+        .item h3{
+            line-height: 1.6;
         }
         .item img{
             width: 100%;
@@ -170,15 +175,14 @@
             text-decoration: none;
             margin: 39px 0px;
         }
-        .page a:hover{
-            color: #333;
-        }
+        
         .page a:not(:first-child):hover{
             color: #c74060;
         }
         
         .page  a:first-child{
             border-bottom: #FDD000 2px solid;
+            cursor:default;
         }
         .info{
             width: 960px;
@@ -188,7 +192,7 @@
             padding: 30px 0px;
         }
         .col{
-            width: 480px;
+            width: 50%;
             margin: auto auto auto 10px;
             text-align: left;
             font-size: 16px;
@@ -230,8 +234,9 @@
             <a href="#"><i class="fas fa-user"></i></a>
             <a href="#"><i class="fas fa-shopping-bag"></i></a>
         </nav>
+        <img src="https://img.shoplineapp.com/media/image_clips/60877c91e67283002f8ab371/original.png?1619491985" class="logo">
         <div class="toplayer">
-                <img src="https://img.shoplineapp.com/media/image_clips/60877c91e67283002f8ab371/original.png?1619491985" alt="">
+                
                 <a href="#">首頁</a>
                 <a href="#">品牌故事</a>
                 <a href="#">所有商品</a>
@@ -259,7 +264,7 @@
                 <img src="https://picsum.photos/300/300/?random=44" class="trans">
                 <input type="button" value="加入購物車" >
                 <div class="text">
-                    <h3>手中點這裡下載，重。</h3>
+                    <h3>隨便而在山西地面看著，走了想像呼吸，做。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -270,7 +275,7 @@
                 <img src="https://picsum.photos/300/300/?random=18" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>不怕對她百度電源改。</h3>
+                    <h3>戰略信箱如此幸福回去演出豪華成了言論及時，會員接近不去，批。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -281,7 +286,7 @@
                     <img src="https://picsum.photos/300/300/?random=17" class="trans">
                     <input type="button" value="加入購物車">
                     <div class="text">
-                        <h3>百度簽名首頁，感情。</h3>
+                        <h3>評價並在東西的是，體會中心，立即拿出那。</h3>
                         <p>NT1688</p>
                     </div>
             </a>
@@ -292,7 +297,7 @@
                 <img src="https://picsum.photos/300/300/?random=110" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>得知百萬表達位置寶。</h3>
+                    <h3>用戶春節習慣重要獲取上傳，台南會計台北角色檢驗玩。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -303,7 +308,7 @@
                 <img src="https://picsum.photos/300/300/?random=88" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>基隆分公司簡單，幽。</h3>
+                    <h3>日月潭政治解壓網域名稱之後法院速度很多第二次這麼。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -314,7 +319,7 @@
                 <img src="https://picsum.photos/300/300/?random=2" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>興奮功能，不得周邊。</h3>
+                    <h3>考慮這位配置有的推出主角成績金額我。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -325,7 +330,7 @@
                 <img src="https://picsum.photos/300/300/?random=26" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>發表甚至產品，如同。</h3>
+                    <h3>身體打擊某種我還你也開口來說你就，效率其他。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -336,7 +341,7 @@
                 <img src="https://picsum.photos/300/300/?random=77" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>當天讀者，貿易周圍。</h3>
+                    <h3>台北照顧基礎得知不得不緩緩你是到處回去具備誘惑幾。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -363,7 +368,7 @@
                 <img src="https://picsum.photos/300/300/?random=7" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>手中點這裡下載，重。</h3>
+                    <h3>美容具備花園，一道付出事故鼓勵精英儘快。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -374,7 +379,7 @@
                 <img src="https://picsum.photos/300/300/?random=56" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>不怕對她百度電源改。</h3>
+                    <h3>像是提醒不多數量配件你們是因為附近公路，觀眾一段。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -385,7 +390,7 @@
                     <img src="https://picsum.photos/300/300/?random=9" class="trans">
                     <input type="button" value="加入購物車">
                     <div class="text">
-                        <h3>百度簽名首頁，感情。</h3>
+                        <h3>能否以前功能尋找，和平排行榜不好意思有些，自從是不是，中心頻道移動治。</h3>
                         <p>NT1688</p>
                     </div>
             </a>
@@ -396,7 +401,7 @@
                 <img src="https://picsum.photos/300/300/?random=70" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>得知百萬表達位置寶。</h3>
+                    <h3>一大一個記者實業一顆業主老婆生活，投入還會我國，表演最重要。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
@@ -407,7 +412,7 @@
                 <img src="https://picsum.photos/300/300/?random=74" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>基隆分公司簡單，幽。</h3>
+                    <h3>指數便宜一致公開做什麼安裝附件促進讓我們合理批准，左右形勢。</h3>
                     <p>NT1688</p>
                 </div>
             </a>
