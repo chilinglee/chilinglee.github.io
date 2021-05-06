@@ -98,9 +98,11 @@
             box-sizing: border-box;
             position: relative;
             font-family: Arial, Helvetica, sans-serif; 
+            
         }
         .item h3{
-            line-height: 1.6;
+            
+            
         }
         .item img{
             width: 100%;
@@ -151,11 +153,22 @@
         .item a{
             text-decoration: none;
         }
+        
+        .text{
+            height: 125px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
         .text *{
             text-align: center;
-            margin: 10px;
+            margin: 3px;
+        }
+        .text h3{
             color: #333;
             font-size: 14px;
+            line-height: 1.5;
+            flex-grow: 1;
         }
         .text p {
             font-size: 16px;
@@ -165,6 +178,7 @@
             text-decoration: line-through;
             color: #aaa;
             font-size: 12px;
+            flex-basis:13px;
         }
         .page{
             height: 100px;
@@ -182,15 +196,22 @@
             margin: 5px;
             padding: 30px 0px 3px;
             text-align: center;
+            /* 讓所有的a高度一致 */
+            border-bottom: transparent 2px solid;
         }
         
         .page a:not(:first-child):hover{
             color: #c74060;
         }
         
-        .page  a:first-child{
+        /* .page  a:first-child{
             border-bottom: #FDD000 2px solid;
             cursor:default;
+        } */
+
+        .page .active{
+            border-bottom-color: #FDD000;
+            /* cursor:default; */
         }
         .info{
             width: 960px;
@@ -272,8 +293,9 @@
                 <img src="https://picsum.photos/300/300/?random=44" class="trans">
                 <input type="button" value="加入購物車" >
                 <div class="text">
-                    <h3>隨便而在山西地面看著，走了想像呼吸，做。</h3>
+                    <h3>隨便而在山西地面看著.</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -297,6 +319,7 @@
                     <div class="text">
                         <h3>評價並在東西的是，體會中心，立即拿出那。</h3>
                         <p>NT1688</p>
+                        <p></p>
                     </div>
             </a>
         </div>
@@ -308,6 +331,7 @@
                 <div class="text">
                     <h3>用戶春節習慣重要獲取上傳，台南會計台北角色檢驗玩。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -319,6 +343,7 @@
                 <div class="text">
                     <h3>日月潭政治解壓網域名稱之後法院速度很多第二次這麼。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -328,8 +353,9 @@
                 <img src="https://picsum.photos/300/300/?random=2" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>考慮這位配置有的推出主角成績金額我。</h3>
+                    <h3>考慮這位配置有的推出。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -339,8 +365,9 @@
                 <img src="https://picsum.photos/300/300/?random=26" class="trans">
                 <input type="button" value="加入購物車">
                 <div class="text">
-                    <h3>身體打擊某種我還你也開口來說你就，效率其他。</h3>
+                    <h3>身體打擊某種我還你也開口來說你就，效率其他。身體打擊某種我還你也開口來說你就，效率其他。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -352,6 +379,7 @@
                 <div class="text">
                     <h3>台北照顧基礎得知不得不緩緩你是到處回去具備誘惑幾。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -391,6 +419,7 @@
                 <div class="text">
                     <h3>像是提醒不多數量配件你們是因為附近公路，觀眾一段。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -402,6 +431,7 @@
                     <div class="text">
                         <h3>能否以前功能尋找，和平排行榜不好意思有些，自從是不是，中心頻道移動治。</h3>
                         <p>NT1688</p>
+                        <p></p>
                     </div>
             </a>
         </div>
@@ -413,6 +443,7 @@
                 <div class="text">
                     <h3>一大一個記者實業一顆業主老婆生活，投入還會我國，表演最重要。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -436,6 +467,7 @@
                 <div class="text">
                     <h3>興奮功能，不得周邊。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -459,12 +491,13 @@
                 <div class="text">
                     <h3>也就呵呵出現在，士兵任何人，我在字元不起，藥品版。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
     </div>
     <div class="page">
-        <a href="#">1</a>
+        <a href="#" class="active">1</a>
         <a href="#">2</a>
         <a href="#">3</a>
         <a href="#">4</a>
@@ -497,6 +530,7 @@
                 <div class="text">
                     <h3>不怕對她百度電源改。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -508,6 +542,7 @@
                     <div class="text">
                         <h3>授權方式，本人利益事故，友情連結。</h3>
                         <p>NT1688</p>
+                        <p></p>
                     </div>
             </a>
         </div>
@@ -519,6 +554,7 @@
                 <div class="text">
                     <h3>準備信箱你還天氣都不對話，會員具有體驗登記附近因。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -553,6 +589,7 @@
                 <div class="text">
                     <h3>事情手冊決策信箱之下說完支撐，經營許可。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
@@ -570,7 +607,7 @@
         </div>
     </div>
     <div class="page">
-        <a href="#">1</a>
+        <a href="#" class="active">1</a>
         <a href="#">2</a>
         <a href="#">3</a>
         <a href="#">4</a>
@@ -615,6 +652,7 @@
                     <div class="text">
                         <h3>人家氣息，章節一體所說，為止相比，這樣。</h3>
                         <p>NT1688</p>
+                        <p></p>
                     </div>
             </a>
         </div>
@@ -626,12 +664,13 @@
                 <div class="text">
                     <h3>得知百萬表達位置寶。</h3>
                     <p>NT1688</p>
+                    <p></p>
                 </div>
             </a>
         </div>
     </div>
     <div class="page">
-        <a href="#">1</a>
+        <a href="#" class="active">1</a>
         <a href="#">2</a>
         <a href="#">3</a>
         <a href="#">»</a>
