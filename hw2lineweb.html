@@ -80,6 +80,7 @@
         }
         .lang a{
             font-family: 'Noto Sans JP', 'Noto Sans', 'Open Sans', 'Roboto', sans-serif;
+            font-size: 16px;
             display:block;
             height: 30px;
             text-decoration: none;
@@ -188,6 +189,10 @@
         .container.even{
             flex-direction: row-reverse;
         }
+
+        .container:last-of-type{
+            padding-bottom: 60px;
+        }
         .container::before{
             content: " ";
             width: 8px;
@@ -247,19 +252,58 @@
         }
         p.other{
             display: block;
-            width: 162px;
             color:#333;
             font-size: 14px;
             border:#dcdcdc solid 1px;
             border-radius: 5px;
-            padding:15px 5px;
+            padding: 22px 5px;
             box-sizing: border-box;
             text-align: center;
+            width: 162px;
+            height: 60px;
+            margin-right: 5px;
+            line-height: 1;
         }
         .intro a{
-            width: 162px;
             text-decoration: none;
+            display: inline-block;
+            height: 60px;
         }
+        .otherlinks{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+        .otherlinks li{
+            display: block;
+            color:#333;
+            font-size: 14px;
+            border:#dcdcdc solid 1px;
+            border-radius: 5px;
+            padding:23px 5px;
+            box-sizing: border-box;
+            text-align: center;
+            width: 162px;
+            height: 60px;
+            margin-right: 5px;
+        }
+        .otherlinks a, .otherlinks li{
+            text-decoration: none;
+            line-height: 1;
+        }
+        .otherlinks a:not(:last-child) li{
+            display: inline-block;
+            font-size: 18px;
+            width: 60px;
+            height: 60px;
+            box-sizing: border-box;
+            padding: 21px;
+        }
+        p.other:hover, .otherlinks li:hover{
+            background-color: #32cd32;
+            color: #fFF;
+        }
+        .otherlinks
 
         /* 通訊軟體 */
         .bannerForTel, .background{
@@ -282,6 +326,7 @@
         .bannerForTel h2{
             padding-top: 60px;
             font-weight: bolder;
+            margin-top: 0;
         }
         .bannerForTel p{
             font-size: 20px;
@@ -296,6 +341,7 @@
             flex-direction: row;
             flex-wrap: wrap;
             background-color: transparent;
+            padding-bottom: 100px;
         }
         .containerForTel .item{
             width: 400px;
@@ -396,6 +442,12 @@
             justify-content: space-between;
             margin-bottom: 100px;
         }
+        .wrapApp{
+            width: 270px;
+            height: 340px;
+            margin-bottom: 40px;
+            position: relative;
+        }
         .app {
             width: 270px;
             height: 340px;
@@ -404,11 +456,12 @@
 
             box-sizing: border-box;
             padding: 30px;
-            margin-bottom: 40px;
 
             font-family: 'Noto Sans', 'Open Sans', 'Roboto', sans-serif;
             background-color:#ffffff;
             position: relative;
+
+            z-index: 0;
         }
         .app *{
             padding: 7px 0px;
@@ -434,6 +487,47 @@
         .app img{
             width: 70px;
             height: 70px;
+        }
+        .hoverApp{
+            width: 270px;
+            height: 340px;
+            border-radius: 4px;
+            background-color: rgba(1, 1, 1, 0.85);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            top: 0;
+
+            opacity: 0;
+        }
+        .hoverApp li, .hoverApp a{
+            text-decoration: none;
+            color:#fff;
+            list-style: none;
+            font-size: 12px;
+            font-family: 'Noto Sans', 'Open Sans', 'Roboto', sans-serif;
+        }
+        .hoverApp li{
+            width: 130px;
+            height: 50px;
+            border: solid 1px #FFF;
+            border-radius: 4px;
+            box-sizing: border-box;
+            padding: 19px 5px;
+            text-align: center;
+            margin: 10px 0px;
+        }
+
+        .hoverApp:hover{
+            opacity: 1;
+        }
+        .hoverApp:hover a:hover li{
+            background-color: #32cd32;
+            color: #fff;
         }
         
         /* footer */
@@ -583,7 +677,7 @@
                 <p><i class="fab fa-line"></i> 下載</p>
                 <div class="icons">
                     <ul>
-                        <a href="#"><li><i class="fab fa-apple"></li></i></a>
+                        <a href="#"><li><i class="fab fa-apple"></i></li></a>
                         <a href="#"><li><i class="fab fa-google-play"></i></li></a>
                         <a href="#"><li><i class="fas fa-desktop"></i></li></a>
                     </ul>
@@ -623,7 +717,11 @@
             <h3>LINE TODAY</h3>
             <p class="green">隨點隨看 生活快充</p>
             <p class="detail">最即時的新聞、影音、運動賽事和娛樂內容直播，讓你話題永不斷線，LINE TODAY陪伴您的每一天！</p>
-            <a href="#"><p class="other"><i class="fas fa-external-link-alt"></i> 其他詳細資訊</p></a>
+            <div class="otherlinks">
+                <a href="#"><li><i class="fab fa-apple"></i></li></a>
+                <a href="#"><li><i class="fab fa-google-play"></i></li></a>
+                <a href="#"><li><i class="fas fa-external-link-alt"></i> 其他詳細資訊</li></a>
+            </div>
         </div>
         <div class="pic"><img src="https://picsum.photos/800/800/?random=3"></div>
     </div>
@@ -633,7 +731,11 @@
             <h3>LINE TODAY</h3>
             <p class="green">隨點隨看 生活快充</p>
             <p class="detail">最即時的新聞、影音、運動賽事和娛樂內容直播，讓你話題永不斷線，LINE TODAY陪伴您的每一天！</p>
-            <a href="#"><p class="other"><i class="fas fa-external-link-alt"></i> 其他詳細資訊</p></a>
+            <div class="otherlinks">
+                <a href="#"><li><i class="fab fa-apple"></i></li></a>
+                <a href="#"><li><i class="fab fa-google-play"></i></li></a>
+                <a href="#"><li><i class="fas fa-external-link-alt"></i> 其他詳細資訊</li></a>
+            </div>
         </div>
         <div class="pic"><img src="https://picsum.photos/800/800/?random=4"></div>
     </div>
@@ -643,7 +745,11 @@
             <h3>LINE TODAY</h3>
             <p class="green">隨點隨看 生活快充</p>
             <p class="detail">最即時的新聞、影音、運動賽事和娛樂內容直播，讓你話題永不斷線，LINE TODAY陪伴您的每一天！</p>
-            <a href="#"><p class="other"><i class="fas fa-external-link-alt"></i> 其他詳細資訊</p></a>
+            <div class="otherlinks">
+                <a href="#"><li><i class="fab fa-apple"></i></li></a>
+                <a href="#"><li><i class="fab fa-google-play"></i></li></a>
+                <a href="#"><li><i class="fas fa-external-link-alt"></i> 其他詳細資訊</li></a>
+            </div>
         </div>
         <div class="pic"><img src="https://picsum.photos/800/800/?random=5"></div>
     </div>
@@ -711,239 +817,614 @@
                 <a href="#"><input type="button" value="Games"></a>
             </div>
             <div class="wrap">
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
-                <div class="app">
-                    <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                    <h3>LINE STORE</h3>
-                    <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                    <p>...</p>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <h3>LINE STORE</h3>
+                        <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                        <p>...</p>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
                 </div>
             </div>
         </div>
