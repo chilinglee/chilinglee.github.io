@@ -16,7 +16,35 @@
             width: 900px;
             margin:auto;
         }
-
+        /* HEADER */
+        
+        .header{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+        .pad{
+            width:30px;
+            height: 100%;
+            display: inline-block;
+        }
+        .socialMedia img{
+            height: 25px;
+            margin: auto 10px
+        }
+        .logo{
+            height: 80px;
+        }
+        .logo::after{
+            content: "";
+            display: block;
+            background-color:red;
+            width: 199px;
+            height: 3px;
+            /* position: absolute; */
+        }
         /* 五大優勢header */
         .header5 h3{
             font-size: 40px;
@@ -163,14 +191,13 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            right: 180px;
+            right: -15px;
             margin: auto;
             z-index: 1;
         }
         .even .main-pic a>img{
-            left: -30px;
+            left: -15px;
             right: unset;
-
         }
         .deco{
             width: 400px;
@@ -225,8 +252,19 @@
 <body>
 
 
-    
-
+    <!-- <div class="header">
+        <div class="logo">
+            <div class="pad"></div>
+            <img src="https://www.toyota.com.tw/asset/img/main/logo2.png?99b93c5c" alt="Toyota">
+        </div>
+        <div class="socialMedia">
+            <a href="#"><img src="https://www.toyota.com.tw/asset/img/main/icon-tgr.png?e9ce3b60" alt="GR"></a>
+            <a href="#"><img src="https://www.toyota.com.tw/asset/img/main/icon-facebook.png?2c2baeda" alt="FB"></a>
+            <a href="#"><img src="https://www.toyota.com.tw/asset/img/main/icon-instagram.png?ebbad223" alt="IG"></a>
+            <a href="#"><img src="https://www.toyota.com.tw/asset/img/main/icon-youtube.png?577ec7c2" alt="YT"></a>
+            <div class="pad"></div>
+        </div>
+    </div> -->
     <div class="bgc">
         <div class="space"></div>
         <!-- 五大優勢 -->
