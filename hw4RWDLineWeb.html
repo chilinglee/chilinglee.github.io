@@ -545,7 +545,7 @@
             text-decoration: none;
         }
         .app {
-            width: 100%;
+            /* width: 100%; */
             box-sizing: border-box;
             margin: 30px;
             font-family: 'Noto Sans', 'Open Sans', 'Roboto', sans-serif;
@@ -558,6 +558,7 @@
             flex-direction: column;
             justify-content: center;
             padding-left: 10px;
+            
         }
         .app h3{
             font-size: 16px;
@@ -572,6 +573,7 @@
             color:#666;
             padding:4px;
             padding-top: 10px;
+            margin-right: 2px;
         }
         .app-txt p:last-child{
             display: none;
@@ -614,8 +616,8 @@
             flex-direction: row;
             align-items: center;
             flex-grow: 1;
-
-            padding: 20px 100px 20px 20px;
+            width: 100%;
+            padding: 20px 20px 20px 20px;
             box-sizing: border-box;
         }
         .downloadLink img{
@@ -631,6 +633,7 @@
             line-height: 1.3;
             display: inline-block;
             box-sizing: border-box;
+            width: 10%;
             height: 25px;
             padding: 6px 5px;
             margin-left: 10PX;
@@ -1965,6 +1968,8 @@
             </div>
         </div>
     </div>
+
+    <!-- footer -->
     <div class="footer">
         <div class="link">
             <div class="downloadLink">
@@ -1976,10 +1981,10 @@
                 <a href="#">Chrome</a>
                 <a href="#">APK</a>
                 <a href="#">Screen Saver</a>
-            </div>
-            <div class="QRcode">
-                <img src="pic/qrcode_line.me.png" alt="QRcode">
-                <p>LINE 加入好友</p>
+                <div class="QRcode">
+                    <img src="pic/qrcode_line.me.png" alt="QRcode">
+                    <p>LINE 加入好友</p>
+                </div>
             </div>
         </div>
         <div class="reference">
