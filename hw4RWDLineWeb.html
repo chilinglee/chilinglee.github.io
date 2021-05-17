@@ -591,13 +591,52 @@
             display: none;
         }
 
-
+        /* small-footer */
+        .small-footer{
+            width: 100%;
+            height: 100px;
+            padding-left: 5px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content:
+            flex-start;
+        }
+        .small-footer * a{
+            text-decoration: none;
+            color: #333;
+            font-size: 12px;
+            font-family: 'Noto Sans', 'Open Sans', 'Roboto', sans-serif;
+        }
+        .small-copyright{
+            height: 28px;
+            padding:8px 0px;
+            box-sizing: border-box;
+        }
+        .small-links{
+            display: flex;
+            height: 16px;
+            padding:2px 0px;
+            box-sizing: border-box;
+        }
+        .small-links p{
+            padding: 4px;
+        }
+        .small-links a:not(:last-child) p{
+            border-right: #333 1px solid;
+        }
+        .small-socialMedia{
+            height: 24px;
+            box-sizing: border-box;
+            padding: 6px;
+            margin-top: 5px;
+        }
         /* footer */
         .footer{
             width: 100%;
             height: 200px;
             margin: auto;
-            display: flex;
+            display: none;
             flex-direction: column;
             justify-content: center;
         }
@@ -608,7 +647,7 @@
             display: flex;
             flex-direction: row;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             position: relative;
         }
         .downloadLink{
@@ -627,7 +666,7 @@
         }
         .downloadLink  a{
             font-family: 'Noto Sans', 'Open Sans', 'Roboto', sans-serif;
-            font-size: 8px;
+            font-size: 13px;
             text-decoration: none;
             color: #1e1e1e;
             line-height: 1.3;
@@ -649,7 +688,7 @@
         }
         .QRcode p{
             font-family: 'Noto Sans', 'Open Sans', 'Roboto', sans-serif;
-            font-size: 6px;
+            font-size: 8px;
             color: #999;
 
             width: 90px;
@@ -683,18 +722,18 @@
             justify-content: center;
         }
         .copyright a{
-            font-size: 8px;
+            font-size: 13px;
         }
         .elements a{
-            font-size: 7px;
+            font-size: 12px;
             font-weight: 700;
         }
         .FamilySites a{
-            font-size: 8px;
+            font-size: 13px;
             font-weight: 600;
         }
         .socialMedia a{
-            font-size: 12px;
+            font-size: 25px;
             padding: 0px;
         }
         .socialMedia span{
@@ -856,12 +895,15 @@
             width: 20%;
             height:100vh;
             flex-direction: column;
-            justify-content: space-evenly;
+            justify-content: flex-start;
             box-sizing: border-box;
             margin-top: 20px;
             margin-left: 2%;
             position: sticky;
             top: 75px;
+        }
+        .tag input{
+            margin-top: 20px;
         }
         .wrap{
             width: 78%;
@@ -955,23 +997,11 @@
             background-color: #32cd32;
             color: #fff;
         }
-        .downloadLink a{
-            font-size: 13px;
+        .footer{
+            display: flex;
         }
-        .QRcode p{
-            font-size: 13px;
-        }
-        .copyright a{
-            font-size: 13px;
-        }
-        .elements a{
-            font-size: 12px;
-        }
-        .FamilySites a{
-            font-size: 13px;
-        }
-        .socialMedia a{
-            font-size: 25px;
+        .small-footer{
+            display: none;
         }
     }
     </style>
@@ -1984,6 +2014,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- small-footer -->
+    <div class="small-footer">
+        <div class="small-copyright">
+            <a href="#"><p>&#169 LINE Corporation</p></a>
+        </div>
+        <div class="small-links">
+            <a href="#"><p>Help</p></a>
+            <a href="#"><p>User Agreement</p></a>
+            <a href="#"><p>Privacy Policy</p></a>
+        </div>
+        <div class="small-socialMedia">
+            <a href="#"><span><i class="fab fa-youtube"></i></span></a>
+            <a href="#"><span><i class="fab fa-facebook"></i></span></a>
         </div>
     </div>
 
