@@ -295,13 +295,13 @@
         }
         .intro{
             width: 90%;
-            margin: 0px auto;
+            margin: 0 auto;
             box-sizing: border-box;
             padding-top: 20px;
             padding-left: 30px;
             padding-bottom: 30px;
             font-family: 'Noto Sans JP', 'Noto Sans', 'Open Sans', 'Roboto', sans-serif;
-            border-left:  #999 1px dashed;
+            border-left:  #999 2px dashed;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -315,8 +315,6 @@
             top: 22px;
             left: -17px;
         }
-        /* 
-        } */
         .intro h3{
             font-size: 22px;
             font-weight: 700;
@@ -584,8 +582,10 @@
             letter-spacing: 2px;
         }
         .app img{
-            width: 70px;
-            height: 70px;
+            width: 68px;
+            height: 68px;
+            border: solid 1px lightgrey;
+            border-radius: 15px;
         }
         .hoverApp{
             display: none;
@@ -610,26 +610,34 @@
         }
         .small-copyright{
             height: 28px;
-            padding:8px 0px;
+            padding: 8px 0px;
+            margin-top: 10px;
             box-sizing: border-box;
         }
         .small-links{
             display: flex;
             height: 16px;
-            padding:2px 0px;
+            padding:3px 0px;
             box-sizing: border-box;
         }
-        .small-links p{
-            padding: 4px;
+        .small-links a:not(:first-child) p{
+            padding: 0 20px;
+        }
+        .small-links a:first-child p{
+            padding-right: 20px;
         }
         .small-links a:not(:last-child) p{
-            border-right: #333 1px solid;
+            border-right: #999 1px solid;
         }
-        .small-socialMedia{
+        .small-socialMedia span{
+            display: inline-block;
             height: 24px;
             box-sizing: border-box;
-            padding: 6px;
-            margin-top: 5px;
+            padding-right: 6px;
+            margin-top: 10px;
+        }
+        .small-socialMedia a{
+            font-size: 16px;
         }
         /* footer */
         .footer{
@@ -672,7 +680,6 @@
             line-height: 1.3;
             display: inline-block;
             box-sizing: border-box;
-            width: 10%;
             height: 25px;
             padding: 6px 5px;
             margin-left: 10PX;
@@ -793,6 +800,7 @@
         }
         .container{
             flex-direction: row-reverse;
+            height: 750px;
         }
         .container.even{
             flex-direction: row;
@@ -804,6 +812,9 @@
             right: 0;
             margin: auto;
         }
+        .intro, .pic{
+            width: 50%;
+        }
         .intro{
             border-right:  #dcdcdc 1px dashed;
             border-left: transparent;
@@ -812,17 +823,26 @@
         .even .intro{
             border-right:transparent;
             border-left: #dcdcdc 1px dashed;
-            height: 700px;
+            height: 750px;
             }
+        .intro img{
+            width: 80px;
+            height: 80px;
+            position: static;
+        }
+        .intro h3{
+            font-size: 32px;
+        }
+        .intro p{
+            font-size: 18px;
+        }
         .pic.narrow{
             display: none;
         }
         .pic.wide{
             display: inline;
         }
-        .intro, .pic{
-            width: 50%;
-        }
+        
         .pic img{
             width: 120%;
         }
@@ -844,26 +864,14 @@
             bottom: 0;
             margin: auto;
         }
-        .container{
-            height: 750px;
-        }
-        .intro img{
-            width: 80px;
-            height: 80px;
-            position: static;
-        }
-        .intro h3{
-            font-size: 32px;
-        }
-        .intro p{
-            font-size: 18px;
-        }
+        
         p.ai{
             font-size: 14px;
         }
         p.detail{
             padding-right: 30px;
         }
+
         .bannerForTel::before{
             display:block;
         }
@@ -915,18 +923,19 @@
         }
         .wrapApp{
             width: 27%;
-            height: 55vh;
+            height: 340px;
             margin-bottom: 40px;
             position: relative;
             /* border: transparent; */
         }
+        
         .app {
             width: 100%;
-            height: 55vh;
+            height: 340px;
             box-shadow: 1px 3px 3px 2px #dcdcdc;
             border-radius: 4px;
             box-sizing: border-box;
-            padding: 30px;
+            padding: 30px 15px;
             font-family: 'Noto Sans', 'Open Sans', 'Roboto', sans-serif;
             background-color:#ffffff;
             position: relative;
@@ -958,7 +967,7 @@
         }
         .hoverApp{
             width: 100%;
-            height: 55vh;
+            height: 340px;
             border-radius: 4px;
             background-color: rgba(1, 1, 1, 0.85);
 
@@ -1201,12 +1210,72 @@
             </div>
             <div class="wrap">
                 <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://line.me/static/c5bc5abac963fd619ec6d22240641a90/4b2df/icon-line.png" alt="LineMessenger">
+                        <div class="app-txt">
+                            <h3>LINE Messenger</h3>
+                            <p>拉近人與人、人與資訊及應用服務間的距離的通訊軟體</p>
+                            <p>...</p>
+                        </div>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <div class="app">
+                        <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                        <div class="app-txt">
+                            <h3>LINE STORE</h3>
+                            <p>可購買LINE貼圖、主題或游戲中貨幣的官方綫上商店</p>
+                            <p>...</p>
+                        </div>
+                    </div>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
                     <a href="#">
                         <div class="app">
-                            <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                            <img src="https://line.me/static/0aa6d4a6996fd1a74635a632fd10141b/5b953/3a0ad7b617ee7a9073af5c949562a000.png" alt="">
                             <div class="app-txt">
-                                <h3>LINE STORE</h3>
-                                <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                                <h3>LINE 貼文串</h3>
+                                <p>探索樂趣， 分享生活</p>
+                                <p>...</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <a href="#">
+                        <div class="app">
+                            <img src="https://line.me/static/1ac8807658636d5e0c222f320ef0372a/81c65/9e65a367d93724a6aa21a6e0e0554c5a.png" alt="">
+                            <div class="app-txt">
+                                <h3>LINE Antivirus</h3>
+                                <p>在「LINE Antivirus」執行幾個簡單的步驟，就能保護智慧手機上個人資訊的安全，並可免於病毒或惡意城市的侵害。（限Android版本）</p>
+                                <p>...</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="hoverApp">
+                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
+                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                    </div>
+                </div>
+                <div class="wrapApp">
+                    <a href="#">
+                        <div class="app">
+                            <img src="https://line.me/static/aacb751b6776345aa33fd7564fab2601/5b953/3d47b2f5940f245c221cc7d942ced88c.png" alt="">
+                            <div class="app-txt">
+                                <h3>LINE 社群</h3>
+                                <p>輕鬆分享共同興趣、開心聊出好麻吉。</p>
                                 <p>...</p>
                             </div>
                         </div>
@@ -1220,26 +1289,10 @@
                 <div class="wrapApp">
                     <a href="#">
                         <div class="app">
-                            <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                            <img src="https://line.me/static/c1150ec4b3f3f56cfec5fc9b70dd09b0/81c65/3bc668c7fe27caab893e52a09dcb92df.png" alt="">
                             <div class="app-txt">
-                                <h3>LINE STORE</h3>
-                                <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                                <p>...</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="hoverApp">
-                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
-                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
-                    </div>
-                </div>
-                <div class="wrapApp">
-                    <a href="#">
-                        <div class="app">
-                            <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                            <div class="app-txt">
-                                <h3>LINE STORE</h3>
-                                <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                                <h3>LINE TV</h3>
+                                <p>共享追劇生活</p>
                                 <p>...</p>
                             </div>
                         </div>
@@ -1251,26 +1304,25 @@
                 <div class="wrapApp">
                     <a href="#">
                         <div class="app">
-                            <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                            <img src="https://line.me/static/3f62015e6a67a860f1bb0dedc627f0a0/81c65/15546c9747a5bba01e11bb46625db5d5.png" alt="">
                             <div class="app-txt">
-                                <h3>LINE STORE</h3>
-                                <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                                <h3>LINE GAME</h3>
+                                <p>PLAYTIME ANYTIME! 隨時隨地和朋友一起玩！</p>
                                 <p>...</p>
                             </div>
                         </div>
                     </a>
                     <div class="hoverApp">
-                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
-                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
+                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
                     </div>
                 </div>
                 <div class="wrapApp">
                     <a href="#">
                         <div class="app">
-                            <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                            <img src="https://line.me/static/84d56d3c6c1719d3d1429c6abd63d665/81c65/25bb1dced73b4e65719b9d9e7906b1ca.png" alt="">
                             <div class="app-txt">
-                                <h3>LINE STORE</h3>
-                                <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                                <h3>LINE POD</h3>
+                                <p>全新PC遊戲平臺，用LINE帳號暢玩各種綫上遊戲！</p>
                                 <p>...</p>
                             </div>
                         </div>
@@ -1284,57 +1336,10 @@
                 <div class="wrapApp">
                     <a href="#">
                         <div class="app">
-                            <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
+                            <img src="https://line.me/static/ee55ecb1f18d018822b43a81e813dd2a/81c65/0c9600488806488611a6156a60450edf.png" alt="">
                             <div class="app-txt">
-                                <h3>LINE STORE</h3>
-                                <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                                <p>...</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="hoverApp">
-                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
-                    </div>
-                </div>
-                <div class="wrapApp">
-                    <a href="#">
-                        <div class="app">
-                            <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                            <div class="app-txt">
-                                <h3>LINE STORE</h3>
-                                <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                                <p>...</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="hoverApp">
-                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
-                    </div>
-                </div>
-                <div class="wrapApp">
-                    <a href="#">
-                        <div class="app">
-                            <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                            <div class="app-txt">
-                                <h3>LINE STORE</h3>
-                                <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
-                                <p>...</p>
-                            </div>
-                        </div>
-                    </a>
-                    <div class="hoverApp">
-                        <a href="#"><li><i class="fab fa-apple"></i> App Store</li></a>
-                        <a href="#"><li><i class="fab fa-google-play"></i> Google Play</li></a>
-                        <a href="#"><li><i class="fas fa-desktop"></i> 其他詳細資訊</li></a>
-                    </div>
-                </div>
-                <div class="wrapApp">
-                    <a href="#">
-                        <div class="app">
-                            <img src="https://scdn.line-apps.com/n/line_store_sp/img/apple_touch_icon_228_20160805.png" alt="">
-                            <div class="app-txt">
-                                <h3>LINE STORE</h3>
-                                <p>背後無奈，大會形式登陸，眼裡報紙尋求，日記眾人來。</p>
+                                <h3>LINE MUSIC</h3>
+                                <p>全方位音樂服務，不知聽音樂、換鈴聲，還能練唱！</p>
                                 <p>...</p>
                             </div>
                         </div>
