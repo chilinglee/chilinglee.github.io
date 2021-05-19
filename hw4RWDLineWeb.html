@@ -398,10 +398,11 @@
         .bannerForTel, .background{
             width: 100%;
             background-color: #f8f8ff;
-            
+            position: relative;
+            z-index: 1;
         }
         .bannerForTel{
-            position: relative;
+            
         }
         .bannerForTel::before{
             content: "•";
@@ -818,7 +819,6 @@
         }
         .container.even{
             flex-direction: row;
-            height: 1000px;
         }
         .container::before{
             display: block;
@@ -834,11 +834,12 @@
             border-right:  #dcdcdc 1px dashed;
             border-left: transparent;
             padding-left:65px;
+            height: 1000px;
         }
         .even .intro{
             border-right:transparent;
             border-left: #dcdcdc 1px dashed;
-            height: 750px;
+            height: 1000px;
             }
         .intro img{
             width: 80px;
