@@ -1,0 +1,29 @@
+.slide-1{
+    background-image: url(https://static.wixstatic.com/media/11062b_20125b6ebe434abd96c4d7773634d1dbf000.jpg/v1/fill/w_1263,h_710,al_c,q_85,usm_0.33_1.00_0.00/11062b_20125b6ebe434abd96c4d7773634d1dbf000.webp);
+}
+.slide-2{
+    background-image: url(https://static.wixstatic.com/media/11062b_444dc1d6c81b4ceda843b1ffa3ea5958f000.jpg/v1/fill/w_1263,h_710,al_c,q_85,usm_0.33_1.00_0.00/11062b_444dc1d6c81b4ceda843b1ffa3ea5958f000.webp);
+}
+.slide-3{
+    background-image: url(https://static.wixstatic.com/media/11062b_482865fdd2424d17828b72e1e1db16f7f000.jpg/v1/fill/w_1278,h_710,al_c,q_85,usm_0.33_1.00_0.00/11062b_482865fdd2424d17828b72e1e1db16f7f000.webp);
+}
+.slide-4{
+    background-image: url(https://static.wixstatic.com/media/5a71f2_15ddb32642bb45c29d4455f566cb4047~mv2_d_3264_2448_s_4_2.jpg/v1/fill/w_1923,h_888,al_c,q_85,usm_0.66_1.00_0.01/5a71f2_15ddb32642bb45c29d4455f566cb4047~mv2_d_3264_2448_s_4_2.webp);
+}
+.slide-5{
+    background-image: url(https://static.wixstatic.com/media/5a71f2_e1e737197e9744cd8c7ea8b8a65d0f67~mv2.jpg/v1/fill/w_1500,h_692,al_c,q_85,usm_0.66_1.00_0.01/5a71f2_e1e737197e9744cd8c7ea8b8a65d0f67~mv2.webp);
+}
+.slide-6{
+    background-image: url(https://static.wixstatic.com/media/5a71f2_3726256a5da840e8b1df0e988639bc67~mv2_d_2800_1573_s_2.jpg/v1/fill/w_1579,h_888,al_c,q_85,usm_0.66_1.00_0.01/5a71f2_3726256a5da840e8b1df0e988639bc67~mv2_d_2800_1573_s_2.webp);
+}
+.slide-7{
+    background-image: url(https://static.wixstatic.com/media/5a71f2_08f86cfb9419470fba577b0807ee1b20~mv2_d_1920_1442_s_2.jpg/v1/fill/w_1579,h_888,al_c,q_85,usm_0.66_1.00_0.01/5a71f2_08f86cfb9419470fba577b0807ee1b20~mv2_d_1920_1442_s_2.webp);
+}
+.slide-8{
+    background-image: url(https://static.wixstatic.com/media/5a71f2_07310aa55e4a4c869120a07bb375edf8~mv2_d_2500_1667_s_2.jpg/v1/fill/w_1923,h_888,al_c,q_85,usm_0.66_1.00_0.01/5a71f2_07310aa55e4a4c869120a07bb375edf8~mv2_d_2500_1667_s_2.webp);
+}
+.banner{
+    background-image: url(https://static.wixstatic.com/media/5b7e139d046c40c1a1acde7162607721.jpg/v1/fill/w_1895,h_467,al_c,q_85,usm_0.66_1.00_0.01/5b7e139d046c40c1a1acde7162607721.webp);
+    background-size: cover;
+    background-position: bottom;
+}
