@@ -49,11 +49,11 @@
         .swiper-slide p {
             background-color: rgba(255, 255, 255, 0.1);
             display: inline-block;
+            text-shadow: 1px 1px  rgba(152, 217, 243, 0.5);
         }
 
         .class-info p {
-            background-color: rgba(255, 255, 255, 0.2);
-
+            background-color:rgba(255, 255, 255, 0.1);
         }
 
         .intro:nth-child(2n) {
@@ -129,11 +129,6 @@
         .tool h5 {
             margin: 0;
         }
-
-        .experience {
-            /* background-color: #fff !important; */
-        }
-
         .experience img {
             width: 100%;
             max-width: 170px;
@@ -169,17 +164,18 @@
             left: 0;
             z-index: 1;
         }
-
         .blur-bgc p {
             text-shadow: 1px 1px 1px gray;
         }
-
         @media screen and (min-width:992px) {
             .navbar {
                 background-color: transparent !important;
                 position: absolute !important;
             }
-
+            .navbar a{
+                color: #fff !important;
+                text-shadow: 1px 1px 1px gray;
+            }
             .schedule .card {
                 min-height: 625px;
                 text-align: start;
@@ -188,9 +184,6 @@
             .tool .card {
                 min-height: 440px;
                 text-align: start;
-            }
-            .bg-light{
-                /* background-color: #fff !important; */
             }
             .colaboration {
                 width: 50%;
@@ -213,7 +206,7 @@
 <body>
     <!-- Header -->
     <nav
-        class="navbar navbar-expand-lg navbar-dark bg-dark bd-gradient position-fixed d-flex m-auto start-0 end-0 pt-2">
+        class="navbar navbar-expand-lg navbar-light bg-white bd-gradient position-fixed d-flex m-auto start-0 end-0 pt-2">
         <div class="container-md ">
             <a class="navbar-brand" href="#">
                 <img src="https://static.wixstatic.com/media/5a71f2_1e714a102af34089a58b0544cc0ca35d~mv2.png/v1/fill/w_81,h_89,al_c,q_85,usm_0.66_1.00_0.01/5a71f2_1e714a102af34089a58b0544cc0ca35d~mv2.webp"
@@ -347,7 +340,7 @@
                 </div>
             </div>
             <div class="swiper-slide slide-7 pt-5">
-                <p class="shadow m-auto p-3 text-warning">前往峰頂的路上<br>有人帶!<br><small class="fs-4">START CODING AND GET
+                <p class="shadow m-auto p-3 text-body">前往峰頂的路上<br>有人帶!<br><small class="fs-4">START CODING AND GET
                         COACHED FROM MENTORS</small></p>
                 <div class="class-info fs-6 mb-5">
                     <a href="#" class="mx-3 text-dark fw-bold">
