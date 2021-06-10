@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Guess Number!</title>
+</head>
+
+<body>
+    <div id="main" class="mt-5">
+        <p id="hint"></p>
+    </div>
+    <div class="playground">
+        <button type="button" class="btn btn-warning my-3" id="start">遊戲開始</button>
+        <button type="button" class="btn btn-danger mb-3" id="restart">Restart</button>
+        <input type="text" id="number">
+        <div id="keysArea" class="my-3"></div>
+    </div>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+
+    <script>
+        //製作鍵盤
+        const keys_area = document.getElementById("keysArea");
+        keys_area.setAttribute("style", "margin:auto; width:180px;");
+        const keys_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, "del", 0, "Go"];
+        keys_array.forEach(function (item) {
+            let button = document.createElement("button");
+            button.setAttribute("class", "btn btn-dark");
+            button.setAttribute("style", "width:50px; height:50px; margin:5px 5px; text-align:center; font-size:12px;")
+            button.setAttribute("id", item)
+            button.innerText = item;
+            //關閉button disabled ture 
+            button.disabled = true;
+            keys_area.appendChild(button);
+        });
+        const del = document.getElementById("del");
+        del.setAttribute("style", "width:50px; height:50px; margin:5px 5px; text-align:center; font-size:12px; color:red;")
+        const go = document.getElementById("Go");
+        go.setAttribute("style", "width:50px; height:50px; margin:5px 5px; text-align:center; font-size:12px; color: #7fff00;");
+
+
+        //排版
+        const main = document.getElementById("main");
+        main.setAttribute("style", "width: 400px; height: 150px; border: 1px solid grey; margin:auto; border-radius:10px; display:flex; justify-content:center; align-items: center;")
+        const playground = document.getElementsByClassName("playground")[0];
+        playground.setAttribute("style", "display:flex; flex-direction: column; justify-content:center;")
+        const start = document.getElementById("start");
+        start.setAttribute("style", "width: 100px; margin:auto;");
+        const restart = document.getElementById("restart");
+        restart.setAttribute("style", "width: 100px; margin:auto;");
+        const number_input = document.getElementById("number");
+        number_input.setAttribute("style", "width: 150px; margin:auto;");
+        const hint = document.getElementsByTagName("p")[0];
+        hint.setAttribute("style", "font-size:28px; font-weight:700; margin-bottom: 0;")
+        hint.innerText = "請按【遊戲開始】";
+
+        //設定start button
+        let answer = -1;
+        start.addEventListener('click', function () {
+            answer = Math.floor(Math.random() * 100);
+            keys_array.forEach(function (item) {
+                let button = document.getElementById(item);
+                //打開button disabled = false
+                button.disabled = false;
+            });
+            //清空input form裏的字
+            number_input.value = "";
+            //設定label的提示
+            hint.innerText = "0-99";
+        })
+
+        //設定restart button
+        restart.addEventListener('click', function () {
+            //button disabled
+            keys_array.forEach(function (item) {
+                let button = document.getElementById(item);
+                button.disabled = true;
+            })
+            //清空input form裏的字
+            number_input.value = "";
+            //設定hint
+            hint.innerText = "請按【遊戲開始】"
+        });
+
+        //設定數字按鈕
+        let min = 0;
+        let max = 99;
+        for (let i = 0; i < 10; i++) {
+            let button = document.getElementById(i);
+            button.addEventListener('click', function () {
+                //防呆
+                if (number_input.value.length < 2) {
+                    number_input.value += i;
+                }
+                // if (number_input.value < min || number_input.value > max) {
+                //     window.alert("請輸入提示範圍内的數值")
+                //     number_input.value = number_input.value.slice(0, number_input.value.length - 1);
+                // }
+            });
+        }
+
+        //設定del button
+        del.addEventListener('click', function () {
+            number_input.value = number_input.value.slice(0, number_input.value.length - 1);
+        });
+
+        //設定GO button
+
+        go.addEventListener('click', function () {
+            let guess = number_input.value;
+            console.log(guess);
+            if (guess == "") {
+                window.alert("請輸入數值")
+            }
+            else if (guess < min || guess > max) {
+                window.alert("請輸入範圍内的數值")
+                number_input.value = "";
+            }
+            else if (guess > answer) {
+                max = guess;
+                hint.innerText = min + "-" + max;
+                number_input.value = "";
+            }
+            else if (guess < answer) {
+                min = guess;
+                hint.innerText = min + "-" + max;
+                number_input.value = "";
+            }
+            else {
+                hint.innerText = "Yes it is " + answer;
+                number_input.value = "";
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>
