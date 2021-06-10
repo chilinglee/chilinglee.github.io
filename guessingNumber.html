@@ -121,7 +121,7 @@
         //設定GO button
 
         go.addEventListener('click', function () {
-            let guess = number_input.value;
+            let guess = Number(number_input.value);
             console.log(guess);
             if (guess == "") {
                 window.alert("請輸入數值")
