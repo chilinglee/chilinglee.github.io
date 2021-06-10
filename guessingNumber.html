@@ -83,18 +83,6 @@
             hint.innerText = "0-99";
         })
 
-        //設定restart button
-        restart.addEventListener('click', function () {
-            //button disabled
-            keys_array.forEach(function (item) {
-                let button = document.getElementById(item);
-                button.disabled = true;
-            })
-            //清空input form裏的字
-            number_input.value = "";
-            //設定hint
-            hint.innerText = "請按【遊戲開始】"
-        });
 
         //設定數字按鈕
         let min = 0;
@@ -146,6 +134,21 @@
             }
 
         })
+        //設定restart button
+        restart.addEventListener('click', function () {
+            //button disabled
+            keys_array.forEach(function (item) {
+                let button = document.getElementById(item);
+                button.disabled = true;
+            })
+            //清空input form裏的字
+            number_input.value = "";
+            //設定hint
+            hint.innerText = "請按【遊戲開始】"
+            //設定max min
+            max = 0;
+            min = 0;
+        });
     </script>
 
 </body>
