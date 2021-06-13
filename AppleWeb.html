@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Apple (台灣)</title>
+    <style>
+        .active {
+            background-color: black !important;
+            color: white !important;
+        }
+
+        .content,
+        .picArea {
+            border: 0px solid transparent !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="container" id="playground">
+        <ul class="nav nav-tabs mt-5 justify-content-end" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active text-dark" id="iPhone-tab" data-bs-toggle="tab" data-bs-target="#iPhone"
+                    type="button" role="tab" aria-controls="iPhone" aria-selected="true">iPhone</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-dark" id="iPad-tab" data-bs-toggle="tab" data-bs-target="#iPad"
+                    type="button" role="tab" aria-controls="iPad" aria-selected="false">iPad</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link text-dark" id="MacBook-tab" data-bs-toggle="tab" data-bs-target="#MacBook"
+                    type="button" role="tab" aria-controls="MacBook" aria-selected="false">MacBook</button>
+            </li>
+        </ul>
+        <div class="tab-content " id="myTabContent">
+            <div class=" tab-pane fade show active" id="iPhone" role="tabpanel" aria-labelledby="iPhone-tab">
+            </div>
+            <div class=" tab-pane fade" id="iPad" role="tabpanel" aria-labelledby="iPad-tab"></div>
+            <div class=" tab-pane fade" id="MacBook" role="tabpanel" aria-labelledby="MacBook-tab"></div>
+        </div>
+    </div>
+
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+
+    <script>
+        const Titles = ["iPhone", "iPad", "MacBook"];
+        const product_pic = ["https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-compare-models-202010?wid=636&hei=760&fmt=jpeg&qlt=80&.v=1601610972000g", "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-11-select-202104_GEO_TW?wid=545&hei=550&fmt=jpeg&qlt=95&.v=1617864731000", "https://www.apple.com/v/mac/home/be/images/overview/compare/compare_mbp16__fykfvftfaeuu_large_2x.png"]
+        const color_array = {
+            iPhone:
+                [
+                    { name: "ink", zh_name: "石墨色", url: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-graphite-2020?wid=204&hei=204&fmt=jpeg&qlt=80&.v=1601054548000" },
+                    { name: "silver", zh_name: "銀色", url: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-silver-2020?wid=204&hei=204&fmt=jpeg&qlt=80&.v=1601054548000" },
+                    { name: "gold", zh_name: "金色", url: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-gold-2020?wid=204&hei=204&fmt=jpeg&qlt=80&.v=1601054548000" },
+                    { name: "opacific", zh_name: "太平洋藍色", url: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-blue-2020?wid=204&hei=204&fmt=jpeg&qlt=80&.v=1601054547000" }
+                ],
+            iPad: [
+                { name: "gray", zh_name: "太空灰色", url: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-space-gray-201508?wid=32&amp;hei=32&amp;fmt=png-alpha&amp;.v=0" },
+                { name: "silver", zh_name: "銀色", url: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-silver-2020?wid=204&hei=204&fmt=jpeg&qlt=80&.v=1601054548000" }
+            ],
+            MacBook: [
+                { name: "gray", zh_name: "太空灰色", url: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/finish-space-gray-201508?wid=32&amp;hei=32&amp;fmt=png-alpha&amp;.v=0" },
+                { name: "silver", zh_name: "銀色", url: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-finish-silver-2020?wid=204&hei=204&fmt=jpeg&qlt=80&.v=1601054548000" }
+            ]
+        }
+
+        //type array
+        const type_array = {
+            iPhone: [
+                { name: "iPhone 12 Pro", id: "iPhone12Pro" },
+                { name: "iPhone 12 Pro Max", id: "iPhone12ProMax" }
+            ],
+            iPad: [
+                { name: "iPad Pro 11 inch", id: "iPadPro11inch" },
+                { name: "iPad Pro 12.9 inch", id: "iPadPro129inch" },
+            ],
+            MacBook: [
+                { name: "Apple M1 晶片 256GB", id: "AppleM1_256" },
+                { name: "Apple M1 晶片 512GB", id: "AppleM1_512" },
+                { name: "2.0GHz Intel Core i5 512GB", id: "intel_512" },
+                { name: "2.0GHz Intel Core i5 1TB", id: "intel_1" }
+            ]
+        }
+
+        //所有的Product
+        const Product = {
+            iPhone: [
+                //ink
+                { type: "iPhone12Pro", color: "ink", spec: "128GB", price: "NT$33,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-graphite-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021660000" },
+                { type: "iPhone12Pro", color: "ink", spec: "256GB", price: "NT$37,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-graphite-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021660000" },
+                { type: "iPhone12Pro", color: "ink", spec: "512GB", price: "NT$44,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-graphite-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021660000" },
+                { type: "iPhone12ProMax", color: "ink", spec: "128GB", price: "NT$37,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-graphite-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021658000" },
+                { type: "iPhone12ProMax", color: "ink", spec: "256GB", price: "NT$42,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-graphite-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021658000" },
+                { type: "iPhone12ProMax", color: "ink", spec: "512GB", price: "NT$48,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-graphite-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021658000" },
+
+                //silver
+                { type: "iPhone12Pro", color: "silver", spec: "128GB", price: "NT$33,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-silver-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021661000" },
+                { type: "iPhone12Pro", color: "silver", spec: "256GB", price: "NT$37,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-silver-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021661000" },
+                { type: "iPhone12Pro", color: "silver", spec: "512GB", price: "NT$44,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-silver-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021661000" },
+                { type: "iPhone12ProMax", color: "silver", spec: "128GB", price: "NT$37,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-silver-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021658000" },
+                { type: "iPhone12ProMax", color: "silver", spec: "256GB", price: "NT$42,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-silver-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021658000" },
+                { type: "iPhone12ProMax", color: "silver", spec: "512GB", price: "NT$48,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-silver-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021658000" },
+
+                //gold
+                { type: "iPhone12Pro", color: "gold", spec: "128GB", price: "NT$33,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-gold-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021659000" },
+                { type: "iPhone12Pro", color: "gold", spec: "256GB", price: "NT$37,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-gold-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021659000" },
+                { type: "iPhone12Pro", color: "gold", spec: "512GB", price: "NT$44,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-gold-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021659000" },
+                { type: "iPhone12ProMax", color: "gold", spec: "128GB", price: "NT$37,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-gold-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021660000" },
+                { type: "iPhone12ProMax", color: "gold", spec: "256GB", price: "NT$42,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-gold-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021660000" },
+                { type: "iPhone12ProMax", color: "gold", spec: "512GB", price: "NT$48,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-gold-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021660000" },
+
+                //opacific
+                { type: "iPhone12Pro", color: "opacific", spec: "128GB", price: "NT$33,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021661000" },
+                { type: "iPhone12Pro", color: "opacific", spec: "256GB", price: "NT$37,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021661000" },
+                { type: "iPhone12Pro", color: "opacific", spec: "512GB", price: "NT$44,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-blue-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021661000" },
+                { type: "iPhone12ProMax", color: "opacific", spec: "128GB", price: "NT$37,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-blue-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021658000" },
+                { type: "iPhone12ProMax", color: "opacific", spec: "256GB", price: "NT$42,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-blue-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021658000" },
+                { type: "iPhone12ProMax", color: "opacific", spec: "512GB", price: "NT$48,400", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-12-pro-max-blue-hero?wid=940&hei=1112&fmt=png-alpha&.v=1604021658000" },
+
+            ],
+            iPad: [
+                //gray 11inch
+                { type: "iPadPro11inch", color: "gray", spec: "128GB", price: "NT$24,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617925790000" },
+                { type: "iPadPro11inch", color: "gray", spec: "256GB", price: "NT$28,000", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617925790000" },
+                { type: "iPadPro11inch", color: "gray", spec: "512GB", price: "NT$34,200", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617925790000" },
+                { type: "iPadPro11inch", color: "gray", spec: "1TB", price: "NT$46,600", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617925790000" },
+                { type: "iPadPro11inch", color: "gray", spec: "2TB", price: "NT$59,000", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617925790000" },
+
+                //gray 12.9inch
+                { type: "iPadPro129inch", color: "gray", spec: "128GB", price: "NT$34,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617920534000" },
+                { type: "iPadPro129inch", color: "gray", spec: "256GB", price: "NT$38,000", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617920534000" },
+                { type: "iPadPro129inch", color: "gray", spec: "512GB", price: "NT$44,200", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617920534000" },
+                { type: "iPadPro129inch", color: "gray", spec: "1TB", price: "NT$56,600", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617920534000" },
+                { type: "iPadPro129inch", color: "gray", spec: "2TB", price: "NT$69,000", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-spacegray-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617920534000" },
+
+                //silver 11inch
+                { type: "iPadPro11inch", color: "silver", spec: "128GB", price: "NT$24,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617912663000" },
+                { type: "iPadPro11inch", color: "silver", spec: "256GB", price: "NT$28,000", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617912663000" },
+                { type: "iPadPro11inch", color: "silver", spec: "512GB", price: "NT$34,200", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617912663000" },
+                { type: "iPadPro11inch", color: "silver", spec: "1TB", price: "NT$46,600", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617912663000" },
+                { type: "iPadPro11inch", color: "silver", spec: "2TB", price: "NT$59,000", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-11-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617912663000" },
+
+                //silver 12.9inch
+                { type: "iPadPro129inch", color: "silver", spec: "128GB", price: "NT$34,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617919669000" },
+                { type: "iPadPro129inch", color: "silver", spec: "256GB", price: "NT$38,000", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617919669000" },
+                { type: "iPadPro129inch", color: "silver", spec: "512GB", price: "NT$44,200", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617919669000" },
+                { type: "iPadPro129inch", color: "silver", spec: "1TB", price: "NT$56,600", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617919669000" },
+                { type: "iPadPro129inch", color: "silver", spec: "2TB", price: "NT$69,000", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/ipad-pro-12-select-cell-silver-202104_GEO_TW?wid=940&hei=1112&fmt=p-jpg&qlt=95&.v=1617919669000" },
+
+            ],
+            MacBook: [
+                // gray M1 256GB 
+                { type: "AppleM1_256", color: "gray", spec: "8GB記憶體", price: "NT$39,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613672892000" },
+                { type: "AppleM1_256", color: "gray", spec: "16GB記憶體", price: "NT$45,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613672892000" },
+                // gray M1 512GB
+                { type: "AppleM1_512", color: "gray", spec: "8GB記憶體", price: "NT$45,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613672892000" },
+                { type: "AppleM1_512", color: "gray", spec: "16GB記憶體", price: "NT$51,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp-spacegray-select-202011_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613672892000" },
+                // gray intel i5 512GB
+                { type: "intel_512", color: "gray", spec: "16GB 3733MHz LPDDR4X 記憶體", price: "NT$57,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp13touch-space-select-202005_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1587460444505" },
+                { type: "intel_512", color: "gray", spec: "32GB 3733MHz LPDDR4X 記憶體", price: "NT$69,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp13touch-space-select-202005_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1587460444505" },
+                //gray intel i5 1TB
+                { type: "intel_1", color: "gray", spec: "16GB 3733MHz LPDDR4X 記憶體", price: "NT$63,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp13touch-space-select-202005_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1587460444505" },
+                { type: "intel_1", color: "gray", spec: "32GB 3733MHz LPDDR4X 記憶體", price: "NT$75,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp13touch-space-select-202005_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1587460444505" },
+
+
+                // silver M1 256GB 
+                { type: "AppleM1_256", color: "silver", spec: "8GB記憶體", price: "NT$39,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp-silver-select-202011_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613673937000" },
+                { type: "AppleM1_256", color: "silver", spec: "16GB記憶體", price: "NT$45,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp-silver-select-202011_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613673937000" },
+                // silver M1 512GB
+                { type: "AppleM1_512", color: "silver", spec: "8GB記憶體", price: "NT$45,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp-silver-select-202011_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613673937000" },
+                { type: "AppleM1_512", color: "silver", spec: "16GB記憶體", price: "NT$51,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp-silver-select-202011_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1613673937000" },
+                // silver intel i5 512GB
+                { type: "intel_512", color: "silver", spec: "16GB 3733MHz LPDDR4X 記憶體", price: "NT$57,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp13touch-silver-select-202005_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1587460871788" },
+                { type: "intel_512", color: "silver", spec: "32GB 3733MHz LPDDR4X 記憶體", price: "NT$69,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp13touch-silver-select-202005_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1587460871788" },
+                //silver intel i5 1TB
+                { type: "intel_1", color: "silver", spec: "16GB 3733MHz LPDDR4X 記憶體", price: "NT$63,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp13touch-silver-select-202005_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1587460871788" },
+                { type: "intel_1", color: "silver", spec: "32GB 3733MHz LPDDR4X 記憶體", price: "NT$75,900", pic: "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/mbp13touch-silver-select-202005_GEO_TW?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1587460871788" },
+            ]
+        };
+
+        //製作内容
+        Titles.forEach(function (item, item_index) {
+            //排版
+            let container = document.createElement("div");
+            container.setAttribute("class", "container");
+            let row = document.createElement("div");
+            row.setAttribute("class", "row mb-5");
+            row.setAttribute("style", "min-height:400px;")
+            let picArea = document.createElement("div");
+            picArea.setAttribute("class", "col-12 col-md-6 picArea bg-white ");
+            picArea.setAttribute("id", `pic-${item}`);
+            let content = document.createElement("div");
+            content.setAttribute("class", "col-12 col-md-6 content bg-white pt-3 content");
+            content.setAttribute("id", `content-${item}`);
+
+            //加入產品主圖 img
+            let pane = $getById(item);
+            let img = document.createElement("img");
+            img.setAttribute("src", product_pic[item_index]);
+            img.setAttribute("style", "width:100%; margin-top:120px; position:sticky; top:100px;")
+            //預設color和type屬性;type是每個product的第一種type;color預設是silver,因爲大家都有silver色
+            img.setAttribute("type", type_array[item][0].id);
+            img.setAttribute("color", "silver");
+            picArea.appendChild(img);
+            row.appendChild(picArea);
+
+            //加入color instruction
+            let instruction_color = document.createElement("h4");
+            instruction_color.setAttribute("class", "text-dark text-center my-3 pt-5 pb-3 fs-5 fw-bold");
+            instruction_color.innerText = "選擇外觀";
+            content.appendChild(instruction_color);
+
+            //加入color選擇區
+            let colorArea = document.createElement("div");
+            colorArea.setAttribute("id", `colorArea-${item}`);
+            colorArea.setAttribute("class", "d-flex justify-content-center flex-wrap align-items-center");
+
+            //加入選擇顔色的button
+            color_array[item].forEach(function (c, index) {
+                //設定button外觀
+                let color_button = document.createElement("button");
+                color_button.setAttribute("id", `btn-${item}-${c.name}`);
+                color_button.setAttribute("class", "btn btn-light bg-white border-secondary my-2 mx-2 d-flex flex-column justify-content-center align-items-center");
+                color_button.setAttribute("style", "width:100px; height:120px");
+                color_button.innerHTML = `<img src = ${c.url} style="width:30px; hieght:30px;"><br><p class = "text-center mb-0" style = "font-size:12px;">${c.zh_name}</p>`;
+
+                //color_button監聽事件
+                color_button.addEventListener("click", function (event) {
+
+                    img.setAttribute("color", c.name)
+                    let old_color = img.getAttribute("color");
+                    let old_type = img.getAttribute("type");
+                    Product[item].forEach(function (pro) {
+                        if ((pro.color == old_color) && (pro.type == old_type)) {
+                            img.setAttribute("src", pro.pic);
+                        }
+                    });
+
+                    //設定點選button disabled外觀
+                    color_array[item].forEach(function (co) {
+                        let theButton = document.getElementById(`btn-${item}-${co.name}`)
+                        if (theButton.id == color_button.id) {
+                            theButton.disabled = true;
+                        }
+                        else {
+                            theButton.disabled = false;
+                        }
+                    });
+                });
+
+                colorArea.appendChild(color_button);
+            });
+            content.appendChild(colorArea);
+
+
+            //加入type選擇區
+            let typeArea = document.createElement("div");
+            typeArea.setAttribute("id", `typeArea-${item}`);
+            typeArea.setAttribute("class", "d-flex justify-content-center flex-wrap align-items-center");
+
+            //加入title
+            let instruction_type = document.createElement("h4")
+            instruction_type.setAttribute("class", "text-dark text-center my-3 pt-5 pb-3 fs-5 fw-bold")
+            instruction_type.innerText = "選擇規格"
+            content.appendChild(instruction_type);
+
+            //加入容量選擇區
+            let specArea = document.createElement("div");
+            specArea.setAttribute("id", `specArea-${item}`);
+            specArea.setAttribute("class", "d-flex justify-content-center flex-wrap align-items-center");
+
+            type_array[item].forEach(function (t, type_index) {
+                let type_button = document.createElement("button");
+                type_button.setAttribute("id", `btn-${item}-${t.id}`);
+                type_button.setAttribute("class", "btn btn-light bg-white border-secondary my-2 mx-2 d-flex flex-column justify-content-center align-items-center");
+                type_button.setAttribute("style", "width:150px; height:60px");
+                type_button.innerHTML = `<p class = "text-center mb-0" style = "font-size:12px;">${t.name}</p>`;
+
+                //type button監聽事件
+                type_button.addEventListener("click", function () {
+                    img.setAttribute("type", t.id);
+                    let old_color = img.getAttribute("color");
+                    let old_type = img.getAttribute("type");
+                    Product[item].forEach(function (pro) {
+                        if ((pro.color == old_color) && (pro.type == old_type)) {
+                            img.setAttribute("src", pro.pic);
+                        }
+                    });
+                    //設定點選button disabled外觀
+                    type_array[item].forEach(function (ty) {
+                        let theButton = document.getElementById(`btn-${item}-${ty.id}`)
+                        if (theButton.id == type_button.id) {
+                            theButton.disabled = true;
+                        }
+                        else {
+                            theButton.disabled = false;
+                        }
+                    });
+
+                    //重新設定容量選項
+                    while (specArea.firstChild) {
+                        specArea.removeChild(specArea.firstChild);
+                    }
+                    let present_img = document.querySelector(`div#pic-${item}>img`);
+                    let selected_color = present_img.getAttribute("color");
+                    let selected_type = present_img.getAttribute("type");
+                    Product[item].forEach(function (product) {
+                        if (product.color == selected_color && product.type == selected_type) {
+                            let spec_button = document.createElement("button");
+                            spec_button.setAttribute("id", `btn-${product.type}-${product.spec}`);
+                            spec_button.setAttribute("class", "btn btn-light bg-white border-secondary my-2 mx-2 d-flex flex-column justify-content-center align-items-center");
+                            spec_button.setAttribute("style", "width:150px; height:60px");
+                            spec_button.innerHTML = `<p class = "text-center mb-0" style = "font-size:12px;">${product.spec}<br><span class = "fw-bold">${product.price}</span></p>`;
+                            spec_button.addEventListener("click", function () {
+                                img.setAttribute("price", product.price);
+                                price_p.innerText = "";
+                                price_p.innerText = img.getAttribute("price");
+
+                                let all_spec_button = document.querySelectorAll(`div#specArea-${item}>button`);
+                                for (let sbtn of all_spec_button) {
+                                    if (sbtn == event.target) {
+                                        sbtn.disabled = true;
+                                    }
+                                    else {
+                                        sbtn.disabled = false;
+                                    }
+                                };
+                            });
+                            specArea.appendChild(spec_button);
+                        };
+                    });
+                    //重設價格區域
+                    price_p.innerText = "";
+                });
+
+                typeArea.appendChild(type_button);
+            });
+            content.appendChild(typeArea);
+
+            //加入spec instructor
+            let instruction_spec = document.createElement("h4")
+            instruction_spec.setAttribute("class", "text-dark text-center my-3 pt-5 pb-3 fs-5 fw-bold");
+            instruction_spec.innerText = "選擇容量";
+            content.appendChild(instruction_spec);
+
+            //加入spec buttons
+            let selected_color = img.getAttribute("color");
+            let selected_type = img.getAttribute("type");
+            Product[item].forEach(function (product) {
+                if (product.color == selected_color && product.type == selected_type) {
+                    let spec_button = document.createElement("button");
+                    spec_button.setAttribute("id", `btn-${product.type}-${product.spec}`);
+                    spec_button.setAttribute("class", "btn btn-light bg-white border-secondary my-2 mx-2 d-flex flex-column justify-content-center align-items-center");
+                    spec_button.setAttribute("style", "width:150px; height:60px");
+                    spec_button.innerHTML = `<p class = "text-center mb-0" style = "font-size:12px;">${product.spec}<br><span class = "fw-bold">${product.price}</span></p>`;
+                    spec_button.addEventListener("click", function (event) {
+                        img.setAttribute("price", product.price);
+                        price_p.innerText = "";
+                        price_p.innerText = img.getAttribute("price");
+
+                        let all_spec_button = document.querySelectorAll(`div#specArea-${item}>button`);
+                        for (let sbtn of all_spec_button) {
+                            if (sbtn == event.target) {
+                                sbtn.disabled = true;
+                            }
+                            else {
+                                sbtn.disabled = false;
+                            }
+                        };
+                    });
+
+                    specArea.appendChild(spec_button);
+                };
+            });
+            content.appendChild(specArea);
+
+            //加入價格顯示區域
+            let priceArea = document.createElement("div");
+            priceArea.setAttribute("id", `priceArea-${item}`);
+            priceArea.setAttribute("class", "d-flex flex-column justify-content-center flex-wrap align-items-center");
+            //價格h4
+            let price_title = document.createElement("h4");
+            price_title.innerText = "價格";
+            price_title.setAttribute("class", "text-dark text-center my-3 py-3 fs-5 fw-bold");
+            //價格p
+            let price_p = document.createElement("p");
+            price_p.setAttribute("class", "text-dark fs-4 fw-bold");
+
+            priceArea.appendChild(price_title);
+            priceArea.appendChild(price_p);
+            content.appendChild(priceArea);
+
+            row.appendChild(content);
+            container.appendChild(row);
+            pane.appendChild(container);
+
+            //按tab button時 重設img button的disabled
+            let tab_button = $getById(`${item}-tab`);
+            tab_button.addEventListener("click", function () {
+                img.setAttribute("src", product_pic[item_index]);
+                let all_button = document.getElementsByTagName("button");
+                for (let i = 0; i < all_button.length; i++) {
+                    all_button[i].disabled = false;
+                }
+                price_p.innerText = "";
+            });
+
+
+        });
+        //get function
+        function $getById(sth) {
+            return document.getElementById(sth);
+        }
+    </script>
+
+</body>
+
+</html>
