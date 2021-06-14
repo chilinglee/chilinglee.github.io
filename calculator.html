@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>calculator</title>
+</head>
+
+<body>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
+
+    <script>
+        //（一）排版
+        //1.1 機身
+        let body = document.getElementsByTagName("body")[0];
+        let calBody = $create("div");
+        calBody.setAttribute("style", "width: 320px; height:600px;border-radius:15px;");
+        calBody.setAttribute("class", "bg-dark mx-auto mt-5");
+        body.appendChild(calBody);
+
+        //1.2 顯示區
+        let screen = $create("div");
+        screen.setAttribute("style", "width:100%; height:200px; position:relative;");
+        let show_p = $create("p");
+        show_p.setAttribute("style", "color:#fff;font-size:70px; position:absolute; bottom:5px; right:20px; margin-bottom:0px")
+        show_p.innerText = 0;
+        screen.appendChild(show_p);
+        calBody.appendChild(screen);
+
+        //1.3 計算鍵盤區
+        let keyboard = $create("div");
+        keyboard.setAttribute("style", "width:100%; height:400px; display:flex; flex-wrap: wrap; justify-content:space-between; padding: 0px 12px;");
+        button_content = ["AC", "+/-", "%", "÷", "7", "8", "9", "×", "4", "5", "6", "-", "1", "2", "3", "+", "0", ".", "="];
+        button_content.forEach(function (content) {
+            let button = $create("button");
+            button.setAttribute("id", content);
+            button.innerText = content;
+            button.setAttribute("class", "border-0 btn");
+            if (Number(content) || content == ".") {
+                button.setAttribute("style", "width:70px; height:70px; border-radius: 50%; background-color: #424242; color:#fff; font-size: 26px; font-weight: bold;");
+            }
+            else if (content == "AC" || content == "+/-" || content == "%") {
+                button.setAttribute("style", "width:70px; height:70px; border-radius: 50%; background-color: #a4a4a4; color:#000; font-size: 26px; font-weight: bold;");
+            }
+            else if (content == 0) {
+                button.setAttribute("style", "width:140px; height:70px; border-radius: 35px; background-color: #424242; color:#fff; font-size: 26px; font-weight: bold;");
+            }
+            else {
+                button.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #FFBF00; color:#fff; font-size: 26px; font-weight: bold;");
+            }
+            keyboard.appendChild(button);
+        });
+        calBody.appendChild(keyboard);
+
+        //（二）加入功能button事件
+        //2.0 建一個記錄輸入數值的array
+        let memory = [];
+        //2.1 數字button事件
+        let number_array = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+        let operator_array = ["+", "-", "×", "÷", "="];
+        number_array.forEach(function (num) {
+            let numBtn = $getById(num);
+            numBtn.addEventListener("click", function () {
+                //如果memory呈現["一個數值", "="]， 表示使用者要重新計算，把記錄清除
+                if (memory[1] == "=") {
+                    memory = [];
+                }
+
+                //加上顯示數值，但不能超過7個數字
+                let present_show = show_p.innerText;
+                let show_array = Array.from(present_show);
+                let count = 0;
+                number_array.forEach(function (n) {
+                    if (show_array.includes(n)) {
+                        count++;
+                    };
+                });
+                if (count < 7) {
+                    memory.push(num);
+                    let present_show = show_p.innerText;
+                    present_show += num;
+                    show_p.innerText = numeral(present_show).value();
+                    console.log(memory);
+                };
+
+                //若輸入數值 則AC變成C
+                let CBtn = $getById("AC");
+                if (CBtn.innerText == "AC") {
+                    CBtn.innerText = "C";
+                }
+
+                //如果運算子button的顔色是#fff,則show_p.innerText = "";
+                operator_array.forEach(function (op) {
+                    let opBtn = $getById(op);
+                    if (opBtn.style.backgroundColor == "rgb(255, 255, 255)") {
+                        show_p.innerText = "";
+                        show_p.innerText += num;
+                    }
+                });
+
+                //若輸入數值 運算子的button顔色換回來
+                operator_array.forEach(function (item) {
+                    let opBtn = $getById(item);
+                    opBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #FFBF00; color:#fff; font-size: 26px; font-weight: bold;");
+                });
+
+            });
+        });
+
+        //2.2 dot button事件
+        //爲什麽不能和數字一起加呢？？？
+        let dotBtn = $getById(".");
+        dotBtn.addEventListener("click", function () {
+            let show_array = Array.from(show_p.innerText);
+            if (!show_array.includes(".")) {
+                show_p.innerText += ".";
+                memory.push(".");
+            }
+        });
+
+        //2.3 AC 鍵事件
+        let ACBtn = $getById("AC");
+        ACBtn.addEventListener("click", function () {
+            show_p.innerText = "0";
+            ACBtn.innerText = "AC";
+
+            //清空記憶體
+            memory = [];
+
+            //重設運算子button顔色
+            operator_array.forEach(function (operator) {
+                let theBtn = $getById(operator);
+                theBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #FFBF00; color:#fff; font-size: 26px; font-weight: bold;");
+            });
+        });
+
+        //2.4 +/-事件 pos or neg
+        let PNBtn = $getById("+/-");
+        PNBtn.addEventListener("click", function () {
+            let present_show = show_p.innerText;
+            let array_pre = Array.from(present_show);
+            if (array_pre.includes("-")) {
+                array_pre.shift() //第一個位置刪除元素
+                show_p.innerText = array_pre.join("");
+            }
+            else {
+                array_pre.unshift("-"); //unshift 從第一個位置加入元素
+                show_p.innerText = array_pre.join("");
+            }
+        });
+
+        //2.5 %事件
+        let Btn100 = $getById("%");
+        Btn100.addEventListener("click", function () {
+            let present_show = show_p.innerText;
+            //memory移除present_show未除以100的數值
+            let array_present = Array.from(present_show);
+            for (let i = 0; i < array_present.length; i++) {
+                memory.pop();
+            }
+            present_show = Number(present_show) / 100;
+            show_p.innerText = present_show;
+            memory.push(present_show);
+            console.log(memory);
+        });
+
+        //(三)加入運算子事件
+        //加入運算子事件
+        real_oper = { "+": "+", "-": "-", "×": "*", "/": "÷" };
+        real_oper_key = Object.keys(real_oper);
+        real_oper_value = Object.values(real_oper);
+        operator_array.forEach(function (oper) {
+            let operBtn = $getById(oper);
+            if (oper == "÷") {
+                operBtn.addEventListener("click", function () {
+                    //如果是memory呈現["一個數值", "="], memory.pop();
+                    if (memory[1] == "=") {
+                        memory.pop();
+                    }
+
+                    //如果memory最後一位不是運算子，則直接進行運算；若是運算子就要先pop再運算
+                    let last_input = memory[memory.length - 1];
+                    if (!real_oper_value.includes(last_input)) {
+                        operBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #fff; color:#FFBF00; font-size: 26px; font-weight: bold;");
+                        // 由於四則運算先乘除後加減的問題，因此不顯示結果
+                        // let outcome = eval(memory.join(""));
+                        // show_p.innerText = numeral(outcome).value();
+                        memory.push("/");
+                        console.log(memory);
+                    }
+                    else {
+                        //把所有運算button改成原色
+                        operator_array.forEach(function (eachO) {
+                            let Obtn = $getById(eachO);
+                            Obtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #FFBF00; color:#fff; font-size: 26px; font-weight: bold;");
+                        });
+                        //自己改成active的顔色
+                        operBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #fff; color:#FFBF00; font-size: 26px; font-weight: bold;");
+                        //最後一個運算子清除
+                        memory.pop();
+                        //由於四則運算先乘除後加減的問題，因此不顯示結果
+                        // let outcome = eval(memory.join(""));
+                        // show_p.innerText = numeral(outcome).value();
+                        //加上新的運算子
+                        memory.push("/");
+                        console.log(memory);
+                    };
+                });
+            }
+            else if (oper == "×") {
+                operBtn.addEventListener("click", function () {
+                    //如果是memory呈現["一個數值", "="], memory.pop();
+                    if (memory[1] == "=") {
+                        memory.pop();
+                    }
+
+                    let last_input = memory[memory.length - 1];
+                    if (!real_oper_value.includes(last_input)) {
+                        operBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #fff; color:#FFBF00; font-size: 26px; font-weight: bold;");
+                        // 由於四則運算先乘除後加減的問題，因此不顯示結果
+                        // let outcome = eval(memory.join(""));
+                        // show_p.innerText = numeral(outcome).value();
+                        memory.push("*");
+                        console.log(memory);
+                    }
+                    else {
+                        //把所有運算button改成原色
+                        operator_array.forEach(function (eachO) {
+                            let Obtn = $getById(eachO);
+                            Obtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #FFBF00; color:#fff; font-size: 26px; font-weight: bold;");
+                        });
+                        //自己改成active的顔色
+                        operBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #fff; color:#FFBF00; font-size: 26px; font-weight: bold;");
+                        //最後一個運算子清除
+                        memory.pop();
+                        // 由於四則運算先乘除後加減的問題，因此不顯示結果
+                        // let outcome = eval(memory.join(""));
+                        // show_p.innerText = numeral(outcome).value();
+                        //加上新的運算子
+                        memory.push("*");
+                        console.log(memory);
+                    };
+                });
+            }
+            else if (oper == "=") {
+                operBtn.addEventListener("click", function () {
+                    //如果是memory呈現["一個數值", "="], memory.pop();
+                    if (memory[1] == "=") {
+                        memory.pop();
+                    }
+
+                    let last_input = memory[memory.length - 1];
+                    if (!real_oper_value.includes(last_input)) {
+                        operBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #fff; color:#FFBF00; font-size: 26px; font-weight: bold;");
+                        let outcome = eval(memory.join(""));
+                        show_p.innerText = numeral(outcome).value();
+                        console.log(memory);
+                        memory = [outcome.toString(), "="];
+                    }
+                    else {
+                        //把所有運算button改成原色
+                        operator_array.forEach(function (eachO) {
+                            let Obtn = $getById(eachO);
+                            Obtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #FFBF00; color:#fff; font-size: 26px; font-weight: bold;");
+                        });
+                        //自己改成active的顔色
+                        operBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #fff; color:#FFBF00; font-size: 26px; font-weight: bold;");
+                        //最後一個運算子清除
+                        memory.pop();
+                        //計算結果
+                        let outcome = eval(memory.join(""));
+                        show_p.innerText = numeral(outcome).value();
+                        //加上新的運算子
+                        console.log(memory);
+                        memory = [outcome.toString(), "="];
+                    };
+                });
+            }
+            else {
+                operBtn.addEventListener("click", function () {
+                    //如果是memory呈現["一個數值", "="], memory.pop();
+                    if (memory[1] == "=") {
+                        memory.pop();
+                    }
+
+                    let last_input = memory[memory.length - 1];
+                    if (!real_oper_value.includes(last_input)) {
+                        operBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #fff; color:#FFBF00; font-size: 26px; font-weight: bold;");
+                        let outcome = eval(memory.join(""));
+                        show_p.innerText = numeral(outcome).value();
+                        memory.push(oper);
+                        console.log(memory);
+                    }
+                    else {
+                        //把所有運算button改成原色
+                        operator_array.forEach(function (eachO) {
+                            let Obtn = $getById(eachO);
+                            Obtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #FFBF00; color:#fff; font-size: 26px; font-weight: bold;");
+                        });
+                        //自己改成active的顔色
+                        operBtn.setAttribute("style", "width:70px; height:70px; border-radius: 50%;background-color: #fff; color:#FFBF00; font-size: 26px; font-weight: bold;");
+                        //最後一個運算子清除
+                        memory.pop();
+                        //計算結果
+                        let outcome = eval(memory.join(""));
+                        show_p.innerText = numeral(outcome).value();
+                        //加上新的運算子
+                        memory.push(oper);
+                        console.log(memory);
+                    };
+                });
+            }
+        });
+
+        //appendix
+        function $create(element) {
+            return document.createElement(element);
+        }
+        function $getById(element) {
+            return document.getElementById(element);
+        }
+    </script>
+
+</body>
+
+</html>
