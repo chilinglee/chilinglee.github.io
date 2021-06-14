@@ -155,14 +155,25 @@
         PNBtn.addEventListener("click", function () {
             let present_show = show_p.innerText;
             let array_pre = Array.from(present_show);
+            //把memory中的present_show先刪除
+            for (let t = 0; t < array_pre.length; t++) {
+                memory.pop();
+            }
+            //修改array_pre 及顯示内容
             if (array_pre.includes("-")) {
                 array_pre.shift() //第一個位置刪除元素
                 show_p.innerText = array_pre.join("");
+                //加入memory中
+                memory.push(array_pre.join(""));
             }
             else {
                 array_pre.unshift("-"); //unshift 從第一個位置加入元素
                 show_p.innerText = array_pre.join("");
+                memory.push(array_pre.join(""));
             }
+            console.log(memory);
+
+
         });
 
         //2.5 %事件
