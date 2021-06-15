@@ -12,6 +12,13 @@
 
     <title>Guess Number</title>
     <style>
+        body {
+            background-image: url('https://1.bp.blogspot.com/-zjtpfaCfVNw/X-FcyfXrxOI/AAAAAAABdFE/I7TA9lviiugSB-VHTcJtA1I4UMxv-kumwCNcBGAsYHQ/s1500/onepiece19_kurohige_teach.png');
+            background-size: 600px;
+            background-repeat: no-repeat;
+            background-position: bottom;
+        }
+
         .container-md {
             max-width: 600px !important;
         }
@@ -85,7 +92,9 @@
         //guess button
         let guess = document.getElementById("guess");
         let table = document.getElementsByTagName("table")[0];
-        guess.addEventListener('click', judge());
+        guess.addEventListener('click', function () {
+            judge();
+        });
         document.addEventListener("keydown", function (event) {
             if (event.keyCode == 13) {
                 judge();
@@ -148,17 +157,19 @@
                 if (a == 4) {
                     tr.appendChild(td);
                     table.appendChild(tr);
+
+                    //再來一次
+                    let again = document.getElementById("again");
+                    again.addEventListener('click', function () {
+                        start.disabled = false;
+                        table.innerHTML = "";
+                        answer = [];
+                        // window.alert("請再按一次【開始】");
+                    });
                 }
 
 
-                //再來一次
-                let again = document.getElementById("again");
-                again.addEventListener('click', function () {
-                    start.disabled = false;
-                    table.innerHTML = "";
-                    answer = [];
-                    // window.alert("請再按一次【開始】");
-                });
+
 
                 //showResult function
                 function showResult(bg_type) {
