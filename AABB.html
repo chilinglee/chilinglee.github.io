@@ -13,7 +13,7 @@
     <title>Guess Number</title>
     <style>
         body {
-            min-height: 500px;
+            min-height: 450px;
             background-image: url('https://1.bp.blogspot.com/-zjtpfaCfVNw/X-FcyfXrxOI/AAAAAAABdFE/I7TA9lviiugSB-VHTcJtA1I4UMxv-kumwCNcBGAsYHQ/s1500/onepiece19_kurohige_teach.png');
             background-size: 600px;
             background-repeat: no-repeat;
@@ -22,6 +22,18 @@
 
         .container-md {
             max-width: 400px !important;
+        }
+
+        #guess-area {
+            position: absolute;
+            bottom: 100px;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        body {
+            position: relative;
         }
     </style>
 </head>
@@ -54,10 +66,10 @@
     </div>
     <!-- 答案區 -->
     <div class="container-md" id="show">
-        <table class="table table-bordered"></table>
+        <table class="table"></table>
     </div>
     <!-- 猜測區 -->
-    <div class="container-md">
+    <div class="container-md" id="guess-area">
         <div class="col-auto my-3">
             <div class="input-group">
                 <div class="input-group-text">猜數字</div>
@@ -87,7 +99,7 @@
             let td = document.createElement("td");
             // td.innerHTML = `<span class="badge bg-warning" style="margin-left:5px;">開始</span>`
             td.innerHTML = "開始"
-            td.setAttribute("style", "height:50px;");
+            td.setAttribute("style", "height:50px; text-align:center; color:#fff;");
             tr.appendChild(td);
             table.appendChild(tr);
             start.disabled = true;
@@ -171,7 +183,7 @@
                 //加入【再來一次】button
                 let tr = document.createElement("tr");
                 let td = document.createElement("td");
-                td.innerHTML = `<button class="btn btn-outline-secondary" id="again" style="margin-left:5px;">再來一次</button>`
+                td.innerHTML = `<button class="btn btn-secondary" id="again" style="margin-left:150px;">再來一次</button>`
                 td.setAttribute("style", "height:50px;");
                 if (a == 4) {
                     tr.appendChild(td);
@@ -195,8 +207,9 @@
                 function showResult(bg_type) {
                     let tr = document.createElement("tr");
                     let td = document.createElement("td");
-                    td.innerHTML = `<span class="badge ${bg_type}" style="margin-left:5px;">${a}A${b}B</span> ${guess_input.value}`
-                    td.setAttribute("style", "height:50px;");
+                    tr.setAttribute("style", "text-align:center;")
+                    td.innerHTML = `<span class="badge ${bg_type}" style="margin-left:5px; color:#fff;">${a}A${b}B</span> ${guess_input.value}`
+                    td.setAttribute("style", "height:50px;color:#fff;");
                     tr.appendChild(td);
                     table.appendChild(tr);
                 }
@@ -207,14 +220,14 @@
         function setBgimg() {
             let table = document.getElementsByTagName("table")[0];
             table_h = table.offsetHeight;
-            body_h = table_h + 500;
+            body_h = table_h + 450;
             let body = document.getElementsByTagName("body")[0];
             body.setAttribute("style", `min-height: ${body_h}px;background-image: url('https://1.bp.blogspot.com/-zjtpfaCfVNw/X-FcyfXrxOI/AAAAAAABdFE/I7TA9lviiugSB-VHTcJtA1I4UMxv-kumwCNcBGAsYHQ/s1500/onepiece19_kurohige_teach.png');background-size: 600px;background-repeat: no-repeat;background-position: bottom;`);
         }
         //重新設定背景高度
         function resetBgimg() {
             let body = document.getElementsByTagName("body")[0];
-            body.setAttribute("style", `min-height: 400px;background-image: url('https://1.bp.blogspot.com/-zjtpfaCfVNw/X-FcyfXrxOI/AAAAAAABdFE/I7TA9lviiugSB-VHTcJtA1I4UMxv-kumwCNcBGAsYHQ/s1500/onepiece19_kurohige_teach.png');background-size: 600px;background-repeat: no-repeat;background-position: bottom;`);
+            body.setAttribute("style", `min-height: 450px;background-image: url('https://1.bp.blogspot.com/-zjtpfaCfVNw/X-FcyfXrxOI/AAAAAAABdFE/I7TA9lviiugSB-VHTcJtA1I4UMxv-kumwCNcBGAsYHQ/s1500/onepiece19_kurohige_teach.png');background-size: 600px;background-repeat: no-repeat;background-position: bottom;`);
         }
 
         //放棄重來
