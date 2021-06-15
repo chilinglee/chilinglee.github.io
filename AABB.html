@@ -11,6 +11,11 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <title>Guess Number</title>
+    <style>
+        .container-md {
+            max-width: 600px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -133,8 +138,11 @@
                 let td = document.createElement("td");
                 td.innerHTML = `<button class="btn btn-outline-secondary" id="again" style="margin-left:5px;">再來一次</button>`
                 td.setAttribute("style", "height:50px;");
-                tr.appendChild(td);
-                table.appendChild(tr);
+                if (a == 4) {
+                    tr.appendChild(td);
+                    table.appendChild(tr);
+                }
+
 
                 //再來一次
                 let again = document.getElementById("again");
