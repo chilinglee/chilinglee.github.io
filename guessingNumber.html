@@ -11,6 +11,11 @@
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
     <title>Guess Number!</title>
+    <style>
+        body {
+            background-image: ;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,6 +38,10 @@
         crossorigin="anonymous"></script>
 
     <script>
+        //設定背景
+        let body = document.getElementsByTagName("body")[0];
+        body.setAttribute("style", "background-image:url(https://img1.dowebok.com/5024.jpg);background-size: cover;")
+
         //製作鍵盤
         const keys_area = document.getElementById("keysArea");
         keys_area.setAttribute("style", "margin:auto; width:180px;");
