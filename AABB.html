@@ -13,7 +13,7 @@
     <title>Guess Number</title>
     <style>
         body {
-            min-height: 100vh;
+            min-height: 500px;
             background-image: url('https://1.bp.blogspot.com/-zjtpfaCfVNw/X-FcyfXrxOI/AAAAAAABdFE/I7TA9lviiugSB-VHTcJtA1I4UMxv-kumwCNcBGAsYHQ/s1500/onepiece19_kurohige_teach.png');
             background-size: 600px;
             background-repeat: no-repeat;
@@ -21,7 +21,7 @@
         }
 
         .container-md {
-            max-width: 600px !important;
+            max-width: 400px !important;
         }
     </style>
 </head>
@@ -30,10 +30,25 @@
     <!-- 按鈕區 -->
     <div class="container-md">
         <div class="col-auto my-3">
-            <div class="input-group">
-                <button class="btn btn-danger" type="button" id="start" style="flex-grow: 1;">開始</button>
-                <button class="btn btn-secondary" type="button" id="restart" style="flex-grow: 1;">放棄重來</button>
-                <button class="btn btn-info" type="button" id="peep" style="flex-grow: 1;">看答案</button>
+            <div class="input-group d-flex justify-content-center">
+                <button type="button" id="start"
+                    style="width: 100px; height: 100px; background-color: transparent; border:none; background-size: 100px; position: relative;">
+                    <img src="https://4.bp.blogspot.com/-exP4mmxcGrI/UU--vTE0_SI/AAAAAAAAO9A/Ro7Evu7eEhg/s1600/kaizokusen.png"
+                        style="width:100px; height:100px;">
+                    <span class="text-light fw-bold fs-5" style="position:absolute; top: 50px; left:35px;">開始</span>
+                </button>
+                <button type="button" id="restart"
+                    style="width: 100px; height: 100px; background-color: transparent; border:none; background-size: 100px; position: relative;">
+                    <img src="https://4.bp.blogspot.com/-exP4mmxcGrI/UU--vTE0_SI/AAAAAAAAO9A/Ro7Evu7eEhg/s1600/kaizokusen.png"
+                        style="width:100px; height:100px;">
+                    <span class="text-light fw-bold fs-5" style="position:absolute; top: 50px; left:40px;">重來</span>
+                </button>
+                <button type="button" id="peep"
+                    style="width: 100px; height: 100px; background-color: transparent; border:none; background-size: 100px; position: relative;">
+                    <img src="https://4.bp.blogspot.com/-exP4mmxcGrI/UU--vTE0_SI/AAAAAAAAO9A/Ro7Evu7eEhg/s1600/kaizokusen.png"
+                        style="width:100px; height:100px;">
+                    <span class="text-light fw-bold fs-5" style="position:absolute; top: 50px; left:35px;">看答案</span>
+                </button>
             </div>
         </div>
     </div>
@@ -95,12 +110,15 @@
         let table = document.getElementsByTagName("table")[0];
         guess.addEventListener('click', function () {
             judge();
+            setBgimg();
         });
         document.addEventListener("keydown", function (event) {
             if (event.keyCode == 13) {
                 judge();
+                setBgimg();
             }
         });
+
         //judge function
         function judge() {
             let guess_input = document.getElementById("guess_input");
@@ -166,6 +184,7 @@
                         table.innerHTML = "";
                         answer = [];
                         // window.alert("請再按一次【開始】");
+                        resetBgimg()
                     });
                 }
 
@@ -184,6 +203,19 @@
             }
         }
 
+        //隨著table調整背景圖高度
+        function setBgimg() {
+            let table = document.getElementsByTagName("table")[0];
+            table_h = table.offsetHeight;
+            body_h = table_h + 500;
+            let body = document.getElementsByTagName("body")[0];
+            body.setAttribute("style", `min-height: ${body_h}px;background-image: url('https://1.bp.blogspot.com/-zjtpfaCfVNw/X-FcyfXrxOI/AAAAAAABdFE/I7TA9lviiugSB-VHTcJtA1I4UMxv-kumwCNcBGAsYHQ/s1500/onepiece19_kurohige_teach.png');background-size: 600px;background-repeat: no-repeat;background-position: bottom;`);
+        }
+        //重新設定背景高度
+        function resetBgimg() {
+            let body = document.getElementsByTagName("body")[0];
+            body.setAttribute("style", `min-height: 400px;background-image: url('https://1.bp.blogspot.com/-zjtpfaCfVNw/X-FcyfXrxOI/AAAAAAABdFE/I7TA9lviiugSB-VHTcJtA1I4UMxv-kumwCNcBGAsYHQ/s1500/onepiece19_kurohige_teach.png');background-size: 600px;background-repeat: no-repeat;background-position: bottom;`);
+        }
 
         //放棄重來
         let restart = document.getElementById("restart");
@@ -192,6 +224,7 @@
             table.innerHTML = "";
             answer = [];
             // window.alert("請再按一次【開始】");
+            resetBgimg()
         });
 
         //看答案
