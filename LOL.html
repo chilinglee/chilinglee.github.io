@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+  <title>《英雄聯盟》官方網站</title>
+  <style>
+    header {
+      width: 100%;
+      height: 250px;
+      background-image: url(https://cdngarenanow-a.akamaihd.net/games/lol/2020/LOLwebsite/img/clear2.jpg);
+      background-position: center;
+    }
+
+    .card p {
+      height: 200px;
+      overflow: auto;
+    }
+
+    .card:hover img {
+      transform: scale(1.2);
+      transition: 0.5s;
+    }
+
+    .card:hover {
+      overflow: hidden;
+      transform: scale(1.1);
+      transition: 0.5s;
+    }
+  </style>
+</head>
+
+<body>
+  <header></header>
+
+  <div class="row m-3"></div>
+
+
+  <!-- card template -->
+  <template id="card">
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="card my-3 bg-dark text-light">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title mt-3">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+          <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            詳細資訊
+          </button>
+        </div>
+      </div>
+    </div>
+  </template>
+
+
+  <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-body mt-4">
+          <img src="" alt="" class="w-100">
+          <h5 class="modal-title my-3" id="exampleModalLabel">Modal title</h5>
+          <p></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option 2: Separate Popper and Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+    integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+    crossorigin="anonymous"></script>
+
+  <script>
+    let url = "https://ddragon.leagueoflegends.com/cdn/10.22.1/data/zh_TW/champion.json";
+    window.onload = function () {
+      fetch(url)
+        .then(response => response.text())
+        .then(result => {
+          result = JSON.parse(result).data;
+          character_array = Object.values(result);
+          let row = $g(".row")
+          character_array.forEach(function (character) {
+            let tempCard = $g("template#card")
+            let cloneCard = tempCard.content.cloneNode(true);
+            let img = cloneCard.querySelector("img");
+            let h5 = cloneCard.querySelector("h5");
+            let p = cloneCard.querySelector("p");
+
+            let keyname = character.id;
+            img.setAttribute("src", `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${keyname}_0.jpg`);
+            h5.innerText = `${character.name} ${character.id}`;
+            p.innerText = `${character.blurb}`;
+
+            cloneCard.querySelector(".btn").addEventListener("click", function () {
+              // this.setAttribute("data-toggle", "modal");
+              // this.setAttribute("data-target", "#exampleModal");
+              let modal = $g("#exampleModal");
+              console.log(modal)
+              let h5M = modal.querySelector("h5");
+              h5M.innerText = `${character.name}`
+              let imgM = modal.querySelector("img");
+              imgM.setAttribute("src", `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${character.id}_0.jpg`)
+              let Mbody = modal.querySelector(".modal-body>p");
+              Mbody.innerHTML = `<p>HP: ${character["stats"].hp}</p>
+                              <p>Move Speed: ${character["stats"].movespeed}</p>
+                              <p>Armord: ${character["stats"].armor}
+                              <p>Attack Range: ${character["stats"].attackrange}`;
+            });
+            row.appendChild(cloneCard);
+          });
+          console.log(character_array[0])
+
+        })
+    }
+
+    function $g(element) {
+      let found = document.querySelectorAll(element);
+      return found.length == 1 ? found[0] : found;
+    }
+  </script>
+
+</body>
+
+</html>
