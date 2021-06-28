@@ -42,6 +42,12 @@
             width: 295px;
         }
 
+        .row-button {
+            flex-direction: column !important;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
         button[id*="card"] {
             position: absolute;
             top: 0px;
@@ -184,13 +190,13 @@
 
         button#auto-chose {
             width: 150px !important;
-            /* position: absolute;
-            bottom: 50px;
-            left: 0;
-            right: 0;
-            margin: auto; */
-            margin: auto;
-            border: 4px #ffc107 solid;
+            /* margin: auto; */
+            /* border: 4px #ffc107 solid; */
+        }
+
+        button#again {
+            width: 150px !important;
+            /* margin: auto; */
         }
 
         .modal-content {
@@ -250,6 +256,20 @@
             z-index: 1 !important;
         }
 
+        h1 {
+            position: relative;
+        }
+
+        #fak {
+            width: 100%;
+            height: 1200px;
+            background-color: transparent;
+            position: absolute;
+            z-index: 500;
+            top: 0;
+            left: 0;
+        }
+
         @media screen and (min-width:768px) {
             h1 {
                 margin: 50px auto 30px;
@@ -290,8 +310,13 @@
             }
 
             .row-button {
-                height: 50px;
+                height: 100px;
                 margin: 30px auto 10px;
+            }
+
+            .row-button button {
+                display: block;
+                /* margin: 30px 30px !important; */
             }
 
             button#auto-chose {
@@ -322,70 +347,71 @@
     <div class="row row-button">
         <button class="btn btn-warning" id="auto-chose" data-bs-toggle="tooltip" data-bs-placement="right"
             title="您也可以直接點選卡片">電腦幫我選</button>
+        <button class="btn btn-danger" id="again" onclick="reset()">重來一局</button>
     </div>
     <div class="container-md" id="container">
         <div class="wrap-lgScreen">
             <div class="row">
-                <button id="card1" class=""></button>
-                <button id="card2" class=""></button>
-                <button id="card3" class=""></button>
-                <button id="card4" class=""></button>
-                <button id="card5" class=""></button>
-                <button id="card6" class=""></button>
-                <button id="card7" class=""></button>
-                <button id="card8" class=""></button>
-                <button id="card9" class=""></button>
-                <button id="card10" class=""></button>
-                <button id="card11" class=""></button>
-                <button id="card12" class=""></button>
-                <button id="card13" class=""></button>
+                <button id="card1"></button>
+                <button id="card2"></button>
+                <button id="card3"></button>
+                <button id="card4"></button>
+                <button id="card5"></button>
+                <button id="card6"></button>
+                <button id="card7"></button>
+                <button id="card8"></button>
+                <button id="card9"></button>
+                <button id="card10"></button>
+                <button id="card11"></button>
+                <button id="card12"></button>
+                <button id="card13"></button>
             </div>
             <div class="row">
-                <button id="card14" class=""></button>
-                <button id="card15" class=""></button>
-                <button id="card16" class=""></button>
-                <button id="card17" class=""></button>
-                <button id="card18" class=""></button>
-                <button id="card19" class=""></button>
-                <button id="card20" class=""></button>
-                <button id="card21" class=""></button>
-                <button id="card22" class=""></button>
-                <button id="card23" class=""></button>
-                <button id="card24" class=""></button>
-                <button id="card25" class=""></button>
-                <button id="card26" class=""></button>
+                <button id="card14"></button>
+                <button id="card15"></button>
+                <button id="card16"></button>
+                <button id="card17"></button>
+                <button id="card18"></button>
+                <button id="card19"></button>
+                <button id="card20"></button>
+                <button id="card21"></button>
+                <button id="card22"></button>
+                <button id="card23"></button>
+                <button id="card24"></button>
+                <button id="card25"></button>
+                <button id="card26"></button>
             </div>
         </div>
         <div class="wrap-lgScreen">
             <div class="row">
-                <button id="card27" class=""></button>
-                <button id="card28" class=""></button>
-                <button id="card29" class=""></button>
-                <button id="card30" class=""></button>
-                <button id="card31" class=""></button>
-                <button id="card32" class=""></button>
-                <button id="card33" class=""></button>
-                <button id="card34" class=""></button>
-                <button id="card35" class=""></button>
-                <button id="card36" class=""></button>
-                <button id="card37" class=""></button>
-                <button id="card38" class=""></button>
-                <button id="card39" class=""></button>
+                <button id="card27"></button>
+                <button id="card28"></button>
+                <button id="card29"></button>
+                <button id="card30"></button>
+                <button id="card31"></button>
+                <button id="card32"></button>
+                <button id="card33"></button>
+                <button id="card34"></button>
+                <button id="card35"></button>
+                <button id="card36"></button>
+                <button id="card37"></button>
+                <button id="card38"></button>
+                <button id="card39"></button>
             </div>
             <div class="row">
-                <button id="card40" class=""></button>
-                <button id="card41" class=""></button>
-                <button id="card42" class=""></button>
-                <button id="card43" class=""></button>
-                <button id="card44" class=""></button>
-                <button id="card45" class=""></button>
-                <button id="card46" class=""></button>
-                <button id="card47" class=""></button>
-                <button id="card48" class=""></button>
-                <button id="card49" class=""></button>
-                <button id="card50" class=""></button>
-                <button id="card51" class=""></button>
-                <button id="card52" class=""></button>
+                <button id="card40"></button>
+                <button id="card41"></button>
+                <button id="card42"></button>
+                <button id="card43"></button>
+                <button id="card44"></button>
+                <button id="card45"></button>
+                <button id="card46"></button>
+                <button id="card47"></button>
+                <button id="card48"></button>
+                <button id="card49"></button>
+                <button id="card50"></button>
+                <button id="card51"></button>
+                <button id="card52"></button>
             </div>
         </div>
 
@@ -407,7 +433,7 @@
             </div>
         </div>
     </template>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -442,57 +468,64 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl)
         })
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
+            keyboard: false
+        })
     </script>
 
     <script>
         let url = "https://raw.githubusercontent.com/chilinglee/FileStorage/main/KingsCup.json"
         var deckOfCard = []
+        var fullDeck;
         fetch(url)
             .then(response => response.json())
-            .then(result => deckOfCard.push(...result))
-        const fullDeck = deckOfCard;
-
-        // 初始化
-        window.onload = function () {
-            window.alert("未成年請勿飲酒，成年人勿飲酒過量\n喝酒不開車，開車不喝酒");
-            console.time("window.onload");
-            shuffler(deckOfCard);
-            creatCard();
-            console.timeEnd("window.onload");
-        }
-        let countK = 0;
-
-        //設定卡片的data屬性，以及click事件
-        $g("button[id*='card']").forEach(function (card) {
-            card.setAttribute("data-bs-toggle", "modal");
-            card.setAttribute("data-bs-target", "#exampleModal");
-
-            //click事件發生時加入chosen class 並出現modal
-            card.addEventListener("click", function () {
-                // card flip
-                this.classList.add("chosen");
-                //建立model
-                createModal(this);
+            .then(result => {
+                deckOfCard.push(...result);
+                fullDeck = deckOfCard;
+                shuffler(deckOfCard);
+                creatCard();
+                window.alert("未成年請勿飲酒，成年人勿飲酒過量\n喝酒不開車，開車不喝酒");
+                checkKKKK()
             })
-        });
+
+
+
+
+        // //設定卡片的data屬性，以及click事件
+        // $g("button[id*='card']").forEach(function (card) {
+        //     card.setAttribute("data-bs-toggle", "modal");
+        //     card.setAttribute("data-bs-target", "#exampleModal");
+
+        //     //click事件發生時加入chosen class 並出現modal
+        //     card.addEventListener("click", function () {
+        //         // card flip
+        //         this.classList.add("chosen");
+        //         //建立model
+        //         createModal(this);
+        //     })
+        // });
         //計算第幾個K
+        let countK = 0;
         //小瑪麗跑起來
         let speed = 50;
         let step = 0;
         let currentSpot = 0;
         let allStep = 0;
+        let fak;
         $g("button#auto-chose").addEventListener("click", function () {
+            fak = document.createElement("div");
+            fak.setAttribute("id", "fak");
+            $g("h1").appendChild(fak);
+
             let allcard = $g("button[id*='card']");
             allcard.forEach(function (c) { c.classList.remove("active") })
             step = Math.floor(Math.random() * deckOfCard.length);
-            console.log(step)
-            console.log(deckOfCard.length);
+            // console.log(step)
+            // console.log(deckOfCard.length);
             allStep = step;
             lightMoveToEnd();
 
-            //關掉所有的button
-            let allBtn = $g("button");
-            allBtn.forEach(function (bbb) { bbb.disabled = true });
+
 
             //關掉tooltip
             let myTooltip = document.querySelector("#auto-chosen");
@@ -552,6 +585,17 @@
                 //記錄卡片的number
                 theCard.setAttribute("number", `${card.number}`);
 
+                //設定卡片的data屬性，以及click事件
+                theCard.setAttribute("data-bs-toggle", "modal");
+                theCard.setAttribute("data-bs-target", "#exampleModal");
+
+                //click事件發生時加入chosen class 並出現modal
+                theCard.addEventListener("click", function () {
+                    // card flip
+                    this.classList.add("chosen");
+                    //建立model
+                    createModal(this);
+                })
                 theCard.appendChild(cloneContent);
 
                 left_distance += 20;
@@ -563,6 +607,8 @@
                 }
             });
         }
+
+
         function createModal(theChosenCard) {
 
             //建立model
@@ -581,8 +627,26 @@
             if (countK == 4) {
                 theModal.querySelector("h5").innerText = "THE FOURTH K !!!"
                 theModal.querySelector("p.rule").innerText = "恭喜你獲得國王杯，要喝光光哦";
-                theModal.querySelector("button").innerText = "再玩一局不醉不歸";
-                theModal.querySelector("button").classList.remove("btn-close");
+                theModal.querySelectorAll("p.number").forEach(function (pNum) {
+                    pNum.innerText = theNumber;
+                })
+                theModal.querySelectorAll("img").forEach(function (modalImg) {
+                    modalImg.setAttribute("src", fullDeck.find(x => x.ID == theID)["img"]);
+                })
+                let theBtn = document.createElement("button");
+                theBtn.innerText = "再玩一局不醉不歸";
+                theBtn.classList.add("btn-danger");
+                theBtn.classList.add("btn");
+                theBtn.style.setProperty("margin", "15px");
+                theBtn.style.setProperty("text-align", "center");
+                theBtn.style.setProperty("font-size", "10px");
+                theBtn.addEventListener("click", function () {
+                    myModal.hide();
+                    reset();
+                });
+
+                theModal.querySelector(".modal-body").appendChild(theBtn);
+
             } else {
                 theModal.querySelector("h5").innerText = fullDeck.find(x => x.number == theNumber)["ruleTitle"];
                 theModal.querySelector("p.rule").innerText = fullDeck.find(x => x.number == theNumber)["rule"];
@@ -597,12 +661,12 @@
                 let chosenid = theChosenCard.getAttribute("jsonid")
                 theModal.querySelectorAll("button").forEach(function (b) { b.setAttribute("ID", chosenid) });
                 $g("body").appendChild(theModal);
-
             }
-
-
         }
         function lightMoveToEnd() {
+            //關掉所有的button
+            let allBtn = $g("button");
+            allBtn.forEach(function (bbb) { bbb.disabled = true });
             let allcard = $g("button[id*='card']");
             allcard[currentSpot].classList.remove("active");
             currentSpot++;
@@ -621,8 +685,9 @@
                 createModal(theCard);
 
                 //因爲這裏沒有button實現toggle/show因此用bootstrap5的方法來打開modal
-                let theModal = new bootstrap.Modal(document.querySelector("#exampleModal"));
-                setTimeout(theModal.show(), 2000);
+                // let theModal = new bootstrap.Modal(document.querySelector("#exampleModal"));
+                // setTimeout(theModal.show(), 2000);
+                myModal.show();
 
                 //打開所有btn
                 $g("button").forEach(function (b) { b.disabled = false });
@@ -630,6 +695,54 @@
                 speed = 100;
                 step = 0;
                 currentSpot = 0;
+
+                //隱藏fak
+                $g("#fak").remove();
+            }
+        }
+
+
+        function reset() {
+            let cardRows = $g(".wrap-lgScreen .row");
+            cardRows.forEach(r => { r.innerHTML = "" });
+            creatDOM(cardRows);
+            deckOfCard = fullDeck;
+            shuffler(deckOfCard);
+            creatCard();
+            countK = 0;
+            console.log($g(".modal button.btn-danger"));
+            if ($g(".modal button.btn-danger").length != 0) {
+                $g(".modal button.btn-danger").remove();
+            }
+            checkKKKK();
+        }
+        function checkKKKK() {
+            let kkkk = deckOfCard.filter(x => x.number == "K");
+            console.log(deckOfCard.indexOf(kkkk[0]));
+            console.log(deckOfCard.indexOf(kkkk[1]));
+            console.log(deckOfCard.indexOf(kkkk[2]));
+            console.log(deckOfCard.indexOf(kkkk[3]));
+        }
+        function creatDOM(rows) {
+            for (let x = 1; x <= 13; x++) {
+                let newBtn = document.createElement("button");
+                newBtn.setAttribute("id", `card${x}`);
+                rows[0].appendChild(newBtn);
+            }
+            for (let x = 14; x <= 26; x++) {
+                let newBtn = document.createElement("button");
+                newBtn.setAttribute("id", `card${x}`);
+                rows[1].appendChild(newBtn);
+            }
+            for (let x = 27; x <= 39; x++) {
+                let newBtn = document.createElement("button");
+                newBtn.setAttribute("id", `card${x}`);
+                rows[2].appendChild(newBtn);
+            }
+            for (let x = 40; x <= 52; x++) {
+                let newBtn = document.createElement("button");
+                newBtn.setAttribute("id", `card${x}`);
+                rows[3].appendChild(newBtn);
             }
 
         }
