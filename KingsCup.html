@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/de0f812dc0.js" crossorigin="anonymous"></script>
+    <title>Kings Cup</title>
+    <style>
+        body {
+            background-color: darkgreen;
+        }
+
+        .row>* {
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 15px auto;
+            color: darkorange;
+            font-weight: bold;
+            margin: 50px auto 30px;
+        }
+
+        h1 i {
+            /* font-size: 16px; */
+            font-weight: normal;
+            color: #990033;
+            text-shadow: #fff 1px 1px 1px;
+        }
+
+        .row {
+            position: relative;
+            margin: 20px auto;
+            height: 95px;
+            width: 295px;
+        }
+
+        button[id*="card"] {
+            position: absolute;
+            top: 0px;
+            width: 55px;
+            height: 95px;
+            border-radius: 4px;
+            background: transparent;
+            border: 0;
+        }
+
+        button[id*="card"].active {
+            animation-name: light;
+            animation-duration: 1s;
+
+            /* 設定卡片反轉的3D效果 Perspective的值是物件跟熒幕Z軸的距離 */
+            perspective: 500px;
+        }
+
+        @keyframes light {
+            from {
+                border: solid 3px #f0ff33;
+                box-shadow: 0 0 20px #f0ff33;
+            }
+
+            to {
+                border: unset;
+                box-shadow: unset;
+            }
+        }
+
+        button[id*="card"]:hover {
+            transform: scale(1.05) translateY(-15px);
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            /* perserve-3d specifies the child elements will preserve its 3D position */
+            transform-style: preserve-3d;
+        }
+
+        button[id*="card"].chosen .flip-inner {
+            animation-name: lightAndFlip;
+            animation-duration: 1s;
+            transform: rotateY(180deg);
+            transition: 2s;
+        }
+
+        @keyframes lightAndFlip {
+            0% {
+                border: solid 3px #f0ff33;
+                box-shadow: 0 0 20px #f0ff33;
+            }
+
+            80% {
+                border: unset;
+                box-shadow: unset;
+            }
+        }
+
+        button[id*="card"].chosen {
+            z-index: 1000 !important;
+            transform: scale(1);
+            transition: 0.5s;
+        }
+
+        .flip-front,
+        .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-front img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .flip-back {
+            transform: rotateY(180deg);
+        }
+
+
+        .playcard {
+            width: 55px;
+            height: 95px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: gray 1px solid;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .playcard p {
+            width: 100%;
+            text-align: left;
+            margin: 0;
+            padding-left: 4px;
+            font-size: 16px;
+
+        }
+
+        .playcard img {
+            width: 12px;
+            margin-left: 3px;
+        }
+
+        .pattern-bottom {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pattern-bottom img {
+            transform: rotate(180deg) translateX(3px);
+            align-self: flex-end;
+            margin: 0;
+        }
+
+        .pattern-bottom p {
+            transform: rotate(180deg);
+            margin-right: auto;
+            margin: 0;
+        }
+
+        .pattern-top {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        button#auto-chose {
+            width: 150px !important;
+            /* position: absolute;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            margin: auto; */
+            margin: auto;
+            border: 4px #ffc107 solid;
+        }
+
+        .modal-content {
+            width: 230px;
+            height: 400px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .modal-content h5 {
+            font-size: 16px;
+        }
+
+        .modal-header {
+            border-bottom: unset;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-footer {
+            border-top: unset;
+        }
+
+        p.number {
+            margin-bottom: 0;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        img.pattern {
+            width: 12px;
+            text-align: center;
+
+        }
+
+        #exampleModal .pattern-bottom,
+        #exampleModal .pattern-top {
+            width: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #exampleModal h5 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tooltip {
+            z-index: 1 !important;
+        }
+
+        @media screen and (min-width:768px) {
+            h1 {
+                margin: 50px auto 30px;
+            }
+
+            .playcard {
+                width: 88px;
+                height: 144px;
+            }
+
+            button[id*="card"] {
+                width: 88px;
+                height: 144px;
+            }
+
+            .wrap-lgScreen {
+                display: flex;
+                width: 588px;
+                margin: 0;
+                margin: auto;
+                /* transform: translateX(20px); */
+            }
+
+            .wrap-lgScreen .row:first-child {
+                z-index: 0;
+
+            }
+
+            .wrap-lgScreen .row:nth-child(2) {
+                z-index: 1;
+                transform: translateX(-33px);
+            }
+
+            .row {
+                height: 160px;
+                width: 328px;
+                margin: 25px auto;
+            }
+
+            .row-button {
+                height: 50px;
+                margin: 30px auto 10px;
+            }
+
+            button#auto-chose {
+                bottom: 40px;
+            }
+
+            .modal-content {
+                width: 264px;
+                min-height: 432px;
+            }
+
+            p.number {
+                font-size: 24px;
+            }
+
+            img.pattern {
+                width: 24px;
+                text-align: center;
+
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1><i class="fas fa-wine-bottle"></i> King's Cup <i class="fas fa-wine-glass-alt"></i> </h1>
+    <div class="row row-button">
+        <button class="btn btn-warning" id="auto-chose" data-bs-toggle="tooltip" data-bs-placement="right"
+            title="您也可以直接點選卡片">電腦幫我選</button>
+    </div>
+    <div class="container-md" id="container">
+        <div class="wrap-lgScreen">
+            <div class="row">
+                <button id="card1" class=""></button>
+                <button id="card2" class=""></button>
+                <button id="card3" class=""></button>
+                <button id="card4" class=""></button>
+                <button id="card5" class=""></button>
+                <button id="card6" class=""></button>
+                <button id="card7" class=""></button>
+                <button id="card8" class=""></button>
+                <button id="card9" class=""></button>
+                <button id="card10" class=""></button>
+                <button id="card11" class=""></button>
+                <button id="card12" class=""></button>
+                <button id="card13" class=""></button>
+            </div>
+            <div class="row">
+                <button id="card14" class=""></button>
+                <button id="card15" class=""></button>
+                <button id="card16" class=""></button>
+                <button id="card17" class=""></button>
+                <button id="card18" class=""></button>
+                <button id="card19" class=""></button>
+                <button id="card20" class=""></button>
+                <button id="card21" class=""></button>
+                <button id="card22" class=""></button>
+                <button id="card23" class=""></button>
+                <button id="card24" class=""></button>
+                <button id="card25" class=""></button>
+                <button id="card26" class=""></button>
+            </div>
+        </div>
+        <div class="wrap-lgScreen">
+            <div class="row">
+                <button id="card27" class=""></button>
+                <button id="card28" class=""></button>
+                <button id="card29" class=""></button>
+                <button id="card30" class=""></button>
+                <button id="card31" class=""></button>
+                <button id="card32" class=""></button>
+                <button id="card33" class=""></button>
+                <button id="card34" class=""></button>
+                <button id="card35" class=""></button>
+                <button id="card36" class=""></button>
+                <button id="card37" class=""></button>
+                <button id="card38" class=""></button>
+                <button id="card39" class=""></button>
+            </div>
+            <div class="row">
+                <button id="card40" class=""></button>
+                <button id="card41" class=""></button>
+                <button id="card42" class=""></button>
+                <button id="card43" class=""></button>
+                <button id="card44" class=""></button>
+                <button id="card45" class=""></button>
+                <button id="card46" class=""></button>
+                <button id="card47" class=""></button>
+                <button id="card48" class=""></button>
+                <button id="card49" class=""></button>
+                <button id="card50" class=""></button>
+                <button id="card51" class=""></button>
+                <button id="card52" class=""></button>
+            </div>
+        </div>
+
+    </div>
+    <template id="card">
+        <div class="flip-inner">
+            <div class="flip-front">
+                <img src="https://opengameart.org/sites/default/files/card%20back%20orange.png" alt="">
+            </div>
+            <div class="flip-back playcard">
+                <div class="pattern-top">
+                    <p></p>
+                    <img src="" alt="">
+                </div>
+                <div class="pattern-bottom">
+                    <img src="" alt="">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </template>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="pattern-top">
+                        <p class="number"></p>
+                        <img src="" alt="" class="pattern">
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <p class="rule"></p>
+                </div>
+                <div class="modal-footer">
+                    <div class="pattern-bottom">
+                        <img src="" alt="" class="pattern">
+                        <p class="number"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+
+    <script>
+        let url = "https://raw.githubusercontent.com/chilinglee/FileStorage/main/KingsCup.json"
+        var deckOfCard = []
+        fetch(url)
+            .then(response => response.json())
+            .then(result => deckOfCard.push(...result))
+        const fullDeck = deckOfCard;
+
+        // 初始化
+        window.onload = function () {
+            window.alert("未成年請勿飲酒，成年人勿飲酒過量\n喝酒不開車，開車不喝酒");
+            console.time("window.onload");
+            shuffler(deckOfCard);
+            creatCard();
+            console.timeEnd("window.onload");
+        }
+        let countK = 0;
+
+        //設定卡片的data屬性，以及click事件
+        $g("button[id*='card']").forEach(function (card) {
+            card.setAttribute("data-bs-toggle", "modal");
+            card.setAttribute("data-bs-target", "#exampleModal");
+
+            //click事件發生時加入chosen class 並出現modal
+            card.addEventListener("click", function () {
+                // card flip
+                this.classList.add("chosen");
+                //建立model
+                createModal(this);
+            })
+        });
+        //計算第幾個K
+        //小瑪麗跑起來
+        let speed = 50;
+        let step = 0;
+        let currentSpot = 0;
+        let allStep = 0;
+        $g("button#auto-chose").addEventListener("click", function () {
+            let allcard = $g("button[id*='card']");
+            allcard.forEach(function (c) { c.classList.remove("active") })
+            step = Math.floor(Math.random() * deckOfCard.length);
+            console.log(step)
+            console.log(deckOfCard.length);
+            allStep = step;
+            lightMoveToEnd();
+
+            //關掉所有的button
+            let allBtn = $g("button");
+            allBtn.forEach(function (bbb) { bbb.disabled = true });
+
+            //關掉tooltip
+            let myTooltip = document.querySelector("#auto-chosen");
+            let tooltip = new bootstrap.Tooltip(myTooltip);
+            tooltip.toggle();
+        });
+
+        //設定modal關掉時要把DOM節點與deckOfCard中剛選到的牌資料清除
+        $g("#exampleModal button").addEventListener("click", function () {
+            let allcard = $g("button[id*='card']");
+            let modalBtnId = this.getAttribute("ID");
+
+            //剔除deckOfCard中的應刪除的資料
+            deckOfCard = deckOfCard.filter(x => x["ID"] != modalBtnId);
+            allcard.forEach(function (c) {
+                if (c.getAttribute("jsonid") == modalBtnId) {
+                    //清除DOM節點中的卡片
+                    c.remove();
+                }
+            });
+        });
+
+        //functions
+        function shuffler(theArray) {
+            for (let i = theArray.length - 1; i > 0; i--) {
+                let rnd = Math.floor(Math.random() * i);
+                let value_i = theArray[i];
+                let value_rnd = theArray[rnd];
+                theArray[i] = value_rnd;
+                theArray[rnd] = value_i;
+            }
+        }
+
+        function $g(element) {
+            let found = document.querySelectorAll(element);
+            return found.length == 1 ? found[0] : found;
+        }
+
+        function creatCard() {
+            let cardID = 1;
+            let left_distance = 0;
+            let z = 1;
+            deckOfCard.forEach(function (card) {
+                let tempCard = $g("template#card");
+                let cloneContent = tempCard.content.cloneNode(true);
+                let imgs = cloneContent.querySelectorAll(".playcard img");
+                let ps = cloneContent.querySelectorAll("p");
+                imgs.forEach(function (i) { i.setAttribute("src", card["img"]); });
+                ps.forEach(function (p) { p.innerText = card["number"]; });
+
+                //調整卡片距離
+                let theCard = $g(`#card${cardID}`);
+                theCard.style.setProperty("left", `${left_distance}px`);
+                theCard.style.setProperty("z-index", `${z}`);
+                //記錄卡片json資料中的ID
+                theCard.setAttribute("jsonID", `${card.ID}`);
+                //記錄卡片的number
+                theCard.setAttribute("number", `${card.number}`);
+
+                theCard.appendChild(cloneContent);
+
+                left_distance += 20;
+                z++;
+                cardID++;
+                if (cardID == 27 || cardID == 14 || cardID == 40) {
+                    left_distance = 0;
+                    z = 1;
+                }
+            });
+        }
+        function createModal(theChosenCard) {
+
+            //建立model
+            let theModal = $g("#exampleModal");
+            let theNumber = theChosenCard.getAttribute("number");
+            console.log(theNumber);
+            console.log(theID);
+            let theID = theChosenCard.getAttribute("jsonid");
+            console.log(theNumber);
+            console.log(`countK${countK}`)
+            //計算K
+            if (theNumber == "K") {
+                countK++;
+            }
+            console.log(`countK${countK}`)
+            if (countK == 4) {
+                theModal.querySelector("h5").innerText = "THE FOURTH K !!!"
+                theModal.querySelector("p.rule").innerText = "恭喜你獲得國王杯，要喝光光哦";
+                theModal.querySelector("button").innerText = "再玩一局不醉不歸";
+                theModal.querySelector("button").classList.remove("btn-close");
+            } else {
+                theModal.querySelector("h5").innerText = fullDeck.find(x => x.number == theNumber)["ruleTitle"];
+                theModal.querySelector("p.rule").innerText = fullDeck.find(x => x.number == theNumber)["rule"];
+                theModal.querySelectorAll("p.number").forEach(function (pNum) {
+                    pNum.innerText = theNumber;
+                })
+                theModal.querySelectorAll("img").forEach(function (modalImg) {
+                    modalImg.setAttribute("src", fullDeck.find(x => x.ID == theID)["img"]);
+                })
+
+                //設定modal button 增加ID屬性來對應json中的資料
+                let chosenid = theChosenCard.getAttribute("jsonid")
+                theModal.querySelectorAll("button").forEach(function (b) { b.setAttribute("ID", chosenid) });
+                $g("body").appendChild(theModal);
+
+            }
+
+
+        }
+        function lightMoveToEnd() {
+            let allcard = $g("button[id*='card']");
+            allcard[currentSpot].classList.remove("active");
+            currentSpot++;
+            allcard[currentSpot].classList.add("active");
+            step--;
+
+            if (step > 0) {
+                setTimeout(lightMoveToEnd, speed);
+                if (step < (allStep / 3)) {
+                    speed += 30;
+                }
+            } else {
+                //被選到的card要反轉並產生modal
+                let theCard = allcard[currentSpot];
+                theCard.classList.add("chosen");
+                createModal(theCard);
+
+                //因爲這裏沒有button實現toggle/show因此用bootstrap5的方法來打開modal
+                let theModal = new bootstrap.Modal(document.querySelector("#exampleModal"));
+                setTimeout(theModal.show(), 2000);
+
+                //打開所有btn
+                $g("button").forEach(function (b) { b.disabled = false });
+                //重設
+                speed = 100;
+                step = 0;
+                currentSpot = 0;
+            }
+
+        }
+
+
+    </script>
+
+</body>
+
+</html>
