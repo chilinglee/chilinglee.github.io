@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>長照ABC據點</title>
+    <style>
+        h3 {
+            margin: 5px auto;
+            text-align: center;
+        }
+
+        #map {
+            height: 100vh;
+        }
+
+        div#data {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        div#reference p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-7">
+                <div id="map"></div>
+            </div>
+            <div class="col-5" id="data">
+                <div id="selection">
+                    <h3>長照ABC據點</h3>
+                    <label for="cties"></label>
+                    <select class="form-select" id="cities">
+                        <option value="" selected>---請選擇縣市---</option>
+                    </select>
+                    <label for="cties"></label>
+                    <select class="form-select" id="districts">
+                        <option value="" selected>---請選擇區域---</option>
+                    </select>
+                    <label for="insType"></label>
+                    <select class="form-select" id="insType">
+                        <option value="">---請選擇長照機構類型---</option>
+                        <option value="A">社區整合型服務中心(A)</option>
+                        <option value="B">複合型服務中心(B)</option>
+                        <option value="C">巷弄長照站(C)</option>
+                    </select>
+                </div>
+                <div id="reference">
+                    <p>資料來源：政府資料開放平臺 - 長照ABC據點</p>
+                    <p>資料網址：https://data.gov.tw/dataset/88270</p>
+                    <p>取得日期：110/06/30</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+
+        let map = L.map("map").setView([24.8199265622353, 120.96874010169432], 8.5);
+        let osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        let osm = new L.TileLayer(osmUrl, { minZoom: 8, maxZoom: 19 });
+        map.addLayer(osm);
+        let markers = L.markerClusterGroup();
+
+        let insRequest = axios.get("https://raw.githubusercontent.com/chilinglee/FileStorage/main/longTermCare.json")
+        let areaRequest = axios.get("https://raw.githubusercontent.com/chilinglee/FileStorage/main/TaiwanAreas.json");
+
+        //換顏色
+        var redIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        var goldIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        let careData = [];
+        let areaData = [];
+        let areaSelection = [];
+        window.onload = function () {
+            Promise.all([insRequest, areaRequest])
+                .then(result => {
+                    [careData, areaData] = result;
+                    careData = careData.data;
+                    areaData = areaData.data;
+                    careData = careData.map(x => {
+                        //台灣縣市區域 縣市名稱(3字)+區域名稱(2-4字)：5-7字；應該可以只對照前5個字就好 
+                        let ctd = Array.from(x["地址全址"]).slice(0, 5).join("");
+                        let cityOrCounty = Array.from(x["地址全址"]).slice(0, 3).join("");
+                        return {
+                            "name": x["機構名稱"],
+                            "Lat": x["緯度"],
+                            "Lng": x["經度"],
+                            "item": x["特約服務項目"],
+                            "address": x["地址全址"],
+                            "phone": x["機構電話"],
+                            "email": x["電子郵件"],
+                            "ctd": ctd,
+                            "cityOrCounty": cityOrCounty,
+                            "type": x.O_ABC,
+                        }
+                    })
+                    areaData = areaData.map(y => {
+                        return {
+                            "ctForSearch": y.City + Array.from(y.District).slice(0, 2).join(""),
+                            "cties": y.City,
+                            "district": y.District,
+                            "Lat": y.Lat,
+                            "Lng": y.Lng
+                        }
+                    })
+                    console.log(areaData);
+                    makeCtOptions();
+                    document.querySelectorAll("select:not(:first-of-type)").forEach(s => { s.disabled = true });
+
+                })
+        }
+        document.querySelector("select#cities").addEventListener("change", function () {
+            let selecterDis = document.querySelector("select#districts");
+            selecterDis.innerHTML = "";
+            selecterDis.disabled = false;
+            let value = this.value;
+            let districts = areaData.filter(x => x.cties == value);
+            console.log(districts);
+            selecterDis.innerHTML = "<option>---請選擇區域---</option>"
+            districts.forEach(d => {
+                let option = document.createElement("option");
+                option.value = value + d.district;
+                option.innerText = d.district;
+                selecterDis.add(option);
+            });
+            let insInCt = careData.filter(x => x.cityOrCounty == value);
+            map.setView([districts[0].Lat, districts[0].Lng], 11)
+            // setMarkers(insInCt);
+        });
+        let ins = [];
+        document.querySelector("select#districts").addEventListener("change", function () {
+            document.querySelector("select#insType").disabled = false;
+            theArea = Array.from(this.value).slice(0, 5).join("");
+            console.log(theArea)
+            theArea = areaData.filter(a => a.ctForSearch == theArea)[0];
+
+            map.setView([theArea.Lat, theArea.Lng]);
+
+            ins = careData.filter(c => c.ctd == theArea.ctForSearch);
+            setMarkers(ins);
+        });
+        document.querySelector("select#insType").addEventListener("change", function () {
+            console.log(ins);
+            let type = this.value;
+            let resultIns = ins.filter(i => i.type == type);
+            setMarkers(resultIns);
+        })
+
+        function setMarkers(info) {
+            // console.log("setMarker")
+            if (markers) markers.clearLayers();
+            info.forEach(ins => {
+                let marker = L.marker([ins.Lat, ins.Lng]);
+                console.log(marker);
+                marker.bindPopup(
+                    `<h5>${ins.name}</h5>
+                    <p>服務項目：${ins.item}</p>
+                    <p>地址：${ins.address}</p>
+                    <p>電話：${ins.phone}</p>
+                    <p>電子郵件：${ins.email}</p>
+                    `
+                )
+                markers.addLayer(marker);
+                map.addLayer(markers);
+            });
+        }
+        function makeCtOptions() {
+            let cties = new Set(areaData.map(x => x.cties));
+            cties.forEach(ct => {
+                let selectCt = document.querySelector("select#cities");
+                let option = document.createElement("option");
+                option.innerText = ct;
+                option.value = ct;
+                selectCt.add(option);
+            })
+        }
+        Array.prototype.groupBy = function (prop) {
+            return this.reduce(function (groups, item) {
+                const val = item[prop];
+                groups[val] = groups[val] || [];
+                groups[val].push(item);
+                return groups;
+            }, {});
+        }
+
+
+    </script>
+
+</body>
+
+</html>
