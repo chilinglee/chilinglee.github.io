@@ -132,6 +132,7 @@
                 .then(result => {
                     [careData, areaData] = result;
                     careData = careData.data;
+                    console.log(careData);
                     areaData = areaData.data;
                     careData = careData.map(x => {
                         //台灣縣市區域 縣市名稱(3字)+區域名稱(2-4字)：5-7字；應該可以只對照前5個字就好 
@@ -166,6 +167,8 @@
                 })
         }
         document.querySelector("select#cities").addEventListener("change", function () {
+            document.querySelectorAll("select#insType option")[0].selected = true;
+            document.querySelector("select#insType").disabled = true;
             let selecterDis = document.querySelector("select#districts");
             selecterDis.innerHTML = "";
             selecterDis.disabled = false;
@@ -186,6 +189,7 @@
         let ins = [];
         document.querySelector("select#districts").addEventListener("change", function () {
             document.querySelector("select#insType").disabled = false;
+            document.querySelectorAll("select#insType option")[0].selected = true;
             theArea = Array.from(this.value).slice(0, 5).join("");
             console.log(theArea)
             theArea = areaData.filter(a => a.ctForSearch == theArea)[0];
@@ -221,6 +225,7 @@
             });
         }
         function makeCtOptions() {
+
             let cties = new Set(areaData.map(x => x.cties));
             cties.forEach(ct => {
                 let selectCt = document.querySelector("select#cities");
