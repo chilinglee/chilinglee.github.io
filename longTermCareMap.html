@@ -31,6 +31,19 @@
         div#reference p {
             margin: 0;
         }
+
+        div.tableArea {
+            overflow: auto;
+            max-height: 300px;
+        }
+
+        tbody>tr>td {
+            width: 33.333333%;
+        }
+
+        tbody>tr>td:hover {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -38,10 +51,10 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-7">
+            <div class="col-6">
                 <div id="map"></div>
             </div>
-            <div class="col-5" id="data">
+            <div class="col-6" id="data">
                 <div id="selection">
                     <h3>長照ABC據點</h3>
                     <label for="cties"></label>
@@ -59,6 +72,17 @@
                         <option value="B">複合型服務中心(B)</option>
                         <option value="C">巷弄長照站(C)</option>
                     </select>
+                </div>
+                <div class="tableArea">
+                    <table class="table table-info my-2">
+                        <thead>
+                            <tr>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr></tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div id="reference">
                     <p>資料來源：政府資料開放平臺 - 長照ABC據點</p>
@@ -166,12 +190,18 @@
 
                 })
         }
+        //設定縣市選擇
         document.querySelector("select#cities").addEventListener("change", function () {
             document.querySelectorAll("select#insType option")[0].selected = true;
             document.querySelector("select#insType").disabled = true;
             let selecterDis = document.querySelector("select#districts");
             selecterDis.innerHTML = "";
             selecterDis.disabled = false;
+            let thead = document.querySelector("thead");
+            let tbody = document.querySelector("tbody");
+            thead.innerHTML = "";
+            tbody.innerHTML = "";
+
             let value = this.value;
             let districts = areaData.filter(x => x.cties == value);
             console.log(districts);
@@ -186,10 +216,18 @@
             map.setView([districts[0].Lat, districts[0].Lng], 11)
             // setMarkers(insInCt);
         });
+
+
+        //設計區域選擇
         let ins = [];
         document.querySelector("select#districts").addEventListener("change", function () {
             document.querySelector("select#insType").disabled = false;
             document.querySelectorAll("select#insType option")[0].selected = true;
+            let thead = document.querySelector("thead");
+            let tbody = document.querySelector("tbody");
+            thead.innerHTML = "";
+            tbody.innerHTML = "";
+
             theArea = Array.from(this.value).slice(0, 5).join("");
             console.log(theArea)
             theArea = areaData.filter(a => a.ctForSearch == theArea)[0];
@@ -199,11 +237,15 @@
             ins = careData.filter(c => c.ctd == theArea.ctForSearch);
             setMarkers(ins);
         });
+
+        //新增長照類型選擇
         document.querySelector("select#insType").addEventListener("change", function () {
             console.log(ins);
             let type = this.value;
             let resultIns = ins.filter(i => i.type == type);
             setMarkers(resultIns);
+            createTable(resultIns);
+            console.log(resultIns);
         })
 
         function setMarkers(info) {
@@ -234,6 +276,41 @@
                 option.value = ct;
                 selectCt.add(option);
             })
+        }
+        function createTable(insArray) {
+            let thead = document.querySelector("thead");
+            let tbody = document.querySelector("tbody");
+            thead.innerHTML = "";
+            tbody.innerHTML = "";
+
+            if (insArray.length == 0) {
+                thead.innerText = "查無資料";
+                return;
+            }
+
+            let ths = document.querySelectorAll("th");
+            console.log(ths);
+            let titles = ["機構名稱", "服務項目", "機構地址"];
+            let tr = document.createElement("tr");
+            titles.forEach(t => {
+                let th = document.createElement("th");
+                th.innerText = t;
+                tr.appendChild(th);
+            });
+            thead.appendChild(tr);
+            insArray.forEach(ins => {
+                let tr = document.createElement("tr");
+                let data = [ins.name, ins.item, ins.address];
+                data.forEach(d => {
+                    let td = document.createElement("td");
+                    td.innerText = d;
+                    tr.appendChild(td);
+                    td.addEventListener("click", function () {
+                        map.setView([ins.Lat, ins.Lng], 17);
+                    })
+                })
+                tbody.appendChild(tr);
+            });
         }
         Array.prototype.groupBy = function (prop) {
             return this.reduce(function (groups, item) {
