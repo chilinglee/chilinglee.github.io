@@ -37,8 +37,12 @@
             max-height: 300px;
         }
 
-        tbody>tr>td {
-            width: 33.333333%;
+        tbody>tr>td:last-child {
+            width: 40%;
+        }
+
+        tbody>tr>td:not(last-child) {
+            width: 30%;
         }
 
         tbody>tr>td:hover {
@@ -57,16 +61,16 @@
             <div class="col-6" id="data">
                 <div id="selection">
                     <h3>長照ABC據點</h3>
-                    <label for="cties"></label>
-                    <select class="form-select" id="cities">
+                    <!-- <label for="cties"></label> -->
+                    <select class="form-select my-3" id="cities">
                         <option value="" selected>---請選擇縣市---</option>
                     </select>
-                    <label for="cties"></label>
-                    <select class="form-select" id="districts">
+                    <!-- <label for="cties"></label> -->
+                    <select class="form-select my-3" id="districts">
                         <option value="" selected>---請選擇區域---</option>
                     </select>
-                    <label for="insType"></label>
-                    <select class="form-select" id="insType">
+                    <!-- <label for="insType"></label> -->
+                    <select class="form-select my-3" id="insType">
                         <option value="">---請選擇長照機構類型---</option>
                         <option value="A">社區整合型服務中心(A)</option>
                         <option value="B">複合型服務中心(B)</option>
@@ -287,7 +291,6 @@
                 thead.innerText = "查無資料";
                 return;
             }
-
             let ths = document.querySelectorAll("th");
             console.log(ths);
             let titles = ["機構名稱", "服務項目", "機構地址"];
@@ -306,7 +309,7 @@
                     td.innerText = d;
                     tr.appendChild(td);
                     td.addEventListener("click", function () {
-                        map.setView([ins.Lat, ins.Lng], 17);
+                        map.setView([ins.Lat, ins.Lng], 18);
                     })
                 })
                 tbody.appendChild(tr);
