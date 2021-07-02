@@ -1,0 +1,152 @@
+:root {
+  --myBlue:#85C1E9;
+  --myGreen:#82E0AA;
+  --myPurple:#D2B4DE;
+  --myBrown:#4d2600;
+  --myRed: #DE504A;
+}
+
+body {
+  background-color: #fffadc;
+}
+
+button#addSchedule {
+  border-radius: 50%;
+  font-size: 24px;
+  background-color: var(--myBlue);
+  border-color: var(--myBlue);
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  padding: 6px 12px !important;
+  color: #fff;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100px;
+  width: 1000px;
+  color: var(--myBrown);
+  margin: auto;
+}
+
+header button {
+  border: none !important;
+  height: 40px;
+  line-height: 100px;
+  margin: auto;
+}
+
+header button i {
+  color: var(--myBrown);
+}
+
+header p {
+  line-height: 100px;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 18px;
+}
+
+div.theContainer {
+  width: 1000px;
+  margin: auto;
+}
+
+.row:first-of-type {
+  border: var(--myBrown) solid 0.5px;
+  border-bottom: none;
+}
+
+.row:not(:first-of-type) {
+  border-right: var(--myBrown) solid 0.5px;
+}
+
+.row:last-of-type {
+  border-bottom: var(--myBrown) solid 0.5px;
+}
+
+.head {
+  height: 40px;
+}
+
+.head p {
+  text-align: center;
+  line-height: 40px;
+  margin-bottom: 0;
+  font-weight: bolder;
+  color: var(--myBrown);
+  font-size: 10px;
+}
+
+.content {
+  min-height: 100px;
+  border-top: var(--myBrown) solid 0.5px;
+  border-left: var(--myBrown) solid 0.5px;
+}
+
+.content p {
+  margin: 0;
+  text-align: left;
+  color: var(--myBrown);
+  font-size: 12px;
+}
+
+div#addModal {
+  width: 50%;
+}
+
+div#addModal .modal-content {
+  width: 100%;
+  height: 500px;
+  margin: auto;
+}
+
+div#addModal.modal {
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+div#addModal input#color {
+  height: 46px;
+}
+
+div#addModal button#save {
+  background-color: var(--myGreen);
+  border-color: var(--myGreen);
+}
+
+div#addModal button#close {
+  background-color: var(--myPurple);
+  border-color: var(--myPurple);
+}
+
+div#editModal input#changeColor {
+  height: 46px;
+}
+
+div#editModal button#saveChange {
+  background-color: var(--myPurple);
+  border-color: var(--myPurple);
+}
+
+div#editModal button#delete {
+  background-color: var(--myRed);
+  border-color: var(--myRed);
+}
+
+@media screen and (min-width: 768px) {
+  header p {
+    font-size: 24px;
+  }
+  .head p {
+    font-size: 16px;
+  }
+}
+/*# sourceMappingURL=calendar.css.map */

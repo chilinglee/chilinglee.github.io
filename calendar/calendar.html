@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="calendar.css">
+    <script src="https://kit.fontawesome.com/de0f812dc0.js" crossorigin="anonymous"></script>
+
+    <title>Calendar</title>
+</head>
+
+<body>
+    <button class="btn" id="addSchedule"><i class="fas fa-plus-circle" data-bs-toggle="modal"
+            data-bs-target="#addModal"></i></button>
+    <deco>
+
+    </deco>
+    <header>
+        <button id="before" class="btn" count="-1"><i class="fas fa-chevron-left"></i></button>
+        <div></div>
+        <button id="after" class="btn" count="1"><i class="fas fa-chevron-right"></i></button>
+    </header>
+    <div class="theContainer">
+        <div class="row">
+            <div class="col head">
+                <p>Sun</p>
+            </div>
+            <div class="col head">
+                <p>Mon</p>
+            </div>
+            <div class="col head">
+                <p>Tue</p>
+            </div>
+            <div class="col head">
+                <p>Wed</p>
+            </div>
+            <div class="col head">
+                <p>Thur</p>
+            </div>
+            <div class="col head">
+                <p>Fri</p>
+            </div>
+            <div class="col head">
+                <p>Sat</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col content" id="1"></div>
+            <div class="col content" id="2"></div>
+            <div class="col content" id="3"></div>
+            <div class="col content" id="4"></div>
+            <div class="col content" id="5"></div>
+            <div class="col content" id="6"></div>
+            <div class="col content" id="7"></div>
+        </div>
+        <div class="row">
+            <div class="col content" id="8"></div>
+            <div class="col content" id="9"></div>
+            <div class="col content" id="10"></div>
+            <div class="col content" id="11"></div>
+            <div class="col content" id="12"></div>
+            <div class="col content" id="13"></div>
+            <div class="col content" id="14"></div>
+        </div>
+        <div class="row">
+            <div class="col content" id="15"></div>
+            <div class="col content" id="16"></div>
+            <div class="col content" id="17"></div>
+            <div class="col content" id="18"></div>
+            <div class="col content" id="19"></div>
+            <div class="col content" id="20"></div>
+            <div class="col content" id="21"></div>
+        </div>
+        <div class="row">
+            <div class="col content" id="22"></div>
+            <div class="col content" id="23"></div>
+            <div class="col content" id="24"></div>
+            <div class="col content" id="25"></div>
+            <div class="col content" id="26"></div>
+            <div class="col content" id="27"></div>
+            <div class="col content" id="28"></div>
+        </div>
+        <div class="row">
+            <div class="col content" id="29"></div>
+            <div class="col content" id="30"></div>
+            <div class="col content" id="31"></div>
+            <div class="col content" id="32"></div>
+            <div class="col content" id="33"></div>
+            <div class="col content" id="34"></div>
+            <div class="col content" id="35"></div>
+        </div>
+        <div class="row">
+            <div class="col content" id="36"></div>
+            <div class="col content" id="37"></div>
+            <div class="col content" id="38"></div>
+            <div class="col content" id="39"></div>
+            <div class="col content" id="40"></div>
+            <div class="col content" id="41"></div>
+            <div class="col content" id="42"></div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <!-- 新增行事曆Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addModalLabel">新增行事曆</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="date" class="form-control mb-2" id="theDate">
+                    <input type="time" class="form-control mb-2" id="theTime">
+
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text mb-2" id="addon-wrapping">事項</span>
+                        <input type="text" class="form-control mb-2" placeholder="請輸入待辦事項" id="todo">
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text mb-2" id="addon-wrapping">地點</span>
+                        <input type="text" class="form-control mb-2" placeholder="請輸入地點" id="place">
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text mb-2" id="addon-wrapping">背景顔色</span>
+                        <input type="color" class="form-control mb-2" id="color">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改行事曆Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">修改行程</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="date" class="form-control mb-2" id="changeDate">
+                    <input type="time" class="form-control mb-2" id="changeTime">
+
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text mb-2" id="addon-wrapping">事項</span>
+                        <input type="text" class="form-control mb-2" placeholder="請輸入待辦事項" id="changeTodo">
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text mb-2" id="addon-wrapping">地點</span>
+                        <input type="text" class="form-control mb-2" placeholder="請輸入地點" id="changePlace">
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text mb-2" id="addon-wrapping">背景顔色</span>
+                        <input type="color" class="form-control mb-2" id="changeColor">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="delete">delete</button>
+                    <button type="button" class="btn btn-primary" id="saveChange">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+    <script>
+        var addModal = new bootstrap.Modal(document.getElementById('addModal'), {
+            keyboard: false
+        })
+        var editModal = new bootstrap.Modal(document.getElementById('editModal'), {
+            keyboard: false
+        })
+    </script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+
+    <script>
+        let date = new Date();
+        let thisMonth = date.getMonth();
+        let thisYear = date.getFullYear();
+        let setYear = thisYear;
+        let newItem;
+        //建立月曆
+        createCalendar(thisYear, thisMonth);
+        // setScheduleIn();
+
+        //設定日期更改
+        $g("header>button").forEach(btn => {
+            btn.addEventListener("click", function () {
+                let originMonth = Number($g("header p").getAttribute("mon"));
+                let count = Number(this.getAttribute("count"));
+                let newMonth = originMonth + count;
+                if ((newMonth === -1) && (count === -1)) {
+                    setYear--;
+                    newMonth = 11;
+                } else if ((newMonth === 12) && (count === 1)) {
+                    setYear++
+                    newMonth = 0;
+                }
+                createCalendar(setYear, newMonth);
+
+            });
+        });
+
+        //設定modal
+        $g("button#addSchedule").addEventListener(
+            "click", function () {
+                //把modal中原先儲存的value先清空
+                let dateNow = new Date();
+                $g("input#theDate").value = dateNow.toDateString();
+                $g("input#theTime").value = dateNow.toLocaleTimeString();
+                $g("input#todo").value = "";
+                $g("input#place").value = "";
+                $g("input#color").value = "#000";
+
+                addModal.show();
+            }
+        );
+        //modal資料儲存
+        $g("button#save").addEventListener("click", saveSchedule);
+
+
+
+
+
+        function createCalendar(theYear, theMonth) {
+            //清除所有欄位裏的資料與date屬性
+            let allCol = Array.from($g("div.content"));
+            allCol.forEach(c => {
+                c.innerHTML = "";
+                c.setAttribute("date", "");
+            });
+            //計算當月一日星期幾
+            let first = new Date(theYear, theMonth, 1);
+            let firstDay = first.getDay();
+            // 判斷當月天數
+            let lastDate = new Date(theYear, theMonth + 1, 0);
+            lastDate = lastDate.getDate();
+
+            //用slice刪除前面應的空白日期
+            let i = 1;
+            allCol.slice(firstDay).forEach(col => {
+                if (i > lastDate) {
+                    return;
+                };
+                //將日期資料存在date中
+                col.setAttribute("date", `${theYear}-${(theMonth + 1).toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`);
+                let p = document.createElement("p");
+                p.innerText = i;
+                i++
+                col.appendChild(p);
+            });
+
+            createHeader(theYear, theMonth);
+            setScheduleIn();
+        }
+
+        function createHeader(year, month) {
+            let monthTitle = ""
+            switch (month) {
+                case 0:
+                    monthTitle = "Jan";
+                    break;
+                case 1:
+                    monthTitle = "Feb";
+                    break;
+                case 2:
+                    monthTitle = "Mar";
+                    break;
+                case 3:
+                    monthTitle = "Apr";
+                    break;
+                case 4:
+                    monthTitle = "May";
+                    break;
+                case 5:
+                    monthTitle = "Jun";
+                    break;
+                case 6:
+                    monthTitle = "Jul";
+                    break;
+                case 7:
+                    monthTitle = "Aug";
+                    break;
+                case 8:
+                    monthTitle = "Sep";
+                    break;
+                case 9:
+                    monthTitle = "Oct";
+                    break;
+                case 10:
+                    monthTitle = "Nov";
+                    break;
+                case 11:
+                    monthTitle = "Dec";
+                    break;
+            }
+            let title = $g("header>div");
+            title.innerHTML = "";
+            let p = document.createElement("p");
+            p.innerText = `${year}, ${monthTitle}`;
+            p.setAttribute("mon", `${month}`);
+            title.appendChild(p);
+        }
+        function setScheduleIn() {
+            for (let key in localStorage) {
+                console.log(key);
+                let item = JSON.parse(localStorage.getItem(key));
+                console.log(item);
+                let dateDiv = document.querySelector(`div[date="${key}"]`);
+                if (item != null && dateDiv != null) {
+                    //先依照time進行排序
+                    item.sort((a, b) => {
+                        let aNum = Number((a.time).split(":").join(""));
+                        let bNum = Number((b.time).split(":").join(""));
+                        return aNum - bNum;
+
+                    });
+                    console.log(item);
+                    item.forEach((it, index) => {
+                        let p = document.createElement("p");
+                        p.innerText = it.time + it.todo;
+                        p.style.setProperty("font-size", "8px");
+                        p.style.setProperty("background-color", it.color);
+                        p.setAttribute("data-bs-toggle", "tooltip");
+                        p.setAttribute("data-bs-placement", "top");
+                        p.setAttribute("title", "點一下修改");
+                        p.setAttribute("date", key);
+                        p.style.setProperty("cursor", "pointer")
+                        p.style.setProperty("margin-top", "3px");
+                        p.addEventListener("click", function () {
+                            //將Modal内容設定為資料
+                            $g("input#changeDate").value = key;
+                            $g("input#changeTime").value = it.time;
+                            $g("input#changeTodo").value = it.todo;
+                            $g("input#changePlace").value = it.place;
+                            $g("input#changeColor").value = it.color;
+                            editModal.show();
+
+
+                            // modal 刪除button
+                            $g("button#delete").onclick = "";
+                            $g("button#delete").onclick = function () {
+                                console.log(key);
+                                let removed = item.filter(x => x != it);
+                                localStorage.setItem(key, JSON.stringify(removed));
+
+                                //重新createCalendar
+                                let theDate = new Date(key);
+                                let year = theDate.getFullYear();
+                                let month = theDate.getMonth();
+                                createCalendar(year, month);
+                            };
+
+                            //modal 修改
+                            $g("button#saveChange").onclick = "";
+                            $g("button#saveChange").onclick = function () {
+                                //先將原先的刪除
+                                let itemRemoved = item.filter(x => x != it);
+                                localStorage.setItem(key, JSON.stringify(itemRemoved));
+
+                                //新增新的事件
+                                let newDate = $g("input#changeDate").value;
+                                let newTime = $g("input#changeTime").value;
+                                let newTodo = $g("input#changeTodo").value;
+                                let newPlace = $g("input#changePlace").value;
+                                let newColor = $g("input#changeColor").value;
+                                let newItem = {
+                                    "time": newTime,
+                                    "todo": newTodo,
+                                    "place": newPlace,
+                                    "color": newColor,
+                                }
+
+                                let theDate = new Date(newDate);
+                                let newKey = `${theDate.getUTCFullYear()}-${(theDate.getMonth() + 1).toString().padStart(2, "0")}-${theDate.getDate().toString().padStart(2, "0")}`;
+                                if (localStorage.getItem(newKey) == null) {
+                                    newItem = JSON.stringify([newItem]);
+                                    //更改資料形態
+                                    localStorage.setItem(newKey, newItem);
+                                } else {
+                                    let itemInStorage = JSON.parse(localStorage.getItem(newKey));
+                                    itemInStorage.push(newItem);
+                                    let itemToPut = JSON.stringify(itemInStorage);
+                                    localStorage.setItem(newKey, itemToPut);
+                                }
+
+                                //重新createCalendar
+                                let year = theDate.getFullYear();
+                                let month = theDate.getMonth();
+                                createCalendar(year, month);
+
+                                //關掉Modal
+                                editModal.hide();
+                            }
+
+                        });
+                        dateDiv.appendChild(p);
+                    })
+
+                }
+            }
+        }
+
+        function saveSchedule() {
+            let date = $g("input#theDate").value;
+            let time = $g("input#theTime").value;
+            let todo = $g("input#todo").value;
+            let place = $g("input#place").value;
+            let color = $g("input#color").value;
+            let item = {
+                "time": time,
+                "todo": todo,
+                "place": place,
+                "color": color
+            };
+            if (localStorage.getItem(date) == null) {
+                item = JSON.stringify([item]);
+                //更改資料形態
+                localStorage.setItem(date, item);
+            } else {
+                let itemInStorage = JSON.parse(localStorage.getItem(date));
+                itemInStorage.push(item);
+                let newItem = JSON.stringify(itemInStorage);
+                localStorage.setItem(date, newItem);
+            }
+            //重新製作月曆，畫面跳到新增事項當月的
+            //createCalendar已經包含setScheduleIn功能
+            let theDate = new Date(date);
+            let month = theDate.getMonth();
+            let year = theDate.getFullYear();
+            createCalendar(year, month);
+
+            addModal.hide();
+            editModal.hide();
+
+        }
+
+        function $g(element) {
+            let found = document.querySelectorAll(element);
+            return found.length == 1 ? found[0] : found;
+        }
+
+
+
+
+
+//
+//                       _oo0oo_
+//                      o8888888o
+//                      88" . "88
+//                      (| -_- |)
+//                      0\  =  /0
+//                    ___/`---'\___
+//                  .' \\|     |// '.
+//                 / \\|||  :  |||// \
+//                / _||||| -:- |||||- \
+//               |   | \\\  -  /// |   |
+//               | \_|  ''\---/''  |_/ |
+//               \  .-\__  '-'  ___/-. /
+//             ___'. .'  /--.--\  `. .'___
+//          ."" '<  `.___\_<|>_/___.' >' "".
+//         | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+//         \  \ `_.   \_ __\ /__ _/   .-` /  /
+//     =====`-.____`.___ \_____/___.-`___.-'=====
+//                       `=---='
+//
+//
+//     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//
+//               佛祖保佑         永无BUG
+
+    </script>
+
+</body>
+
+</html>
