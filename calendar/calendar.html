@@ -116,21 +116,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="date" class="form-control mb-2" id="theDate">
-                    <input type="time" class="form-control mb-2" id="theTime">
-
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text mb-2" id="addon-wrapping">事項</span>
-                        <input type="text" class="form-control mb-2" placeholder="請輸入待辦事項" id="todo">
-                    </div>
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text mb-2" id="addon-wrapping">地點</span>
-                        <input type="text" class="form-control mb-2" placeholder="請輸入地點" id="place">
-                    </div>
-                    <div class="input-group flex-nowrap">
-                        <span class="input-group-text mb-2" id="addon-wrapping">背景顔色</span>
-                        <input type="color" class="form-control mb-2" id="color">
-                    </div>
+                    <form action="" id="addModalForm">
+                        <input type="date" class="form-control mb-2" id="theDate">
+                        <input type="time" class="form-control mb-2" id="theTime">
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text mb-2" id="addon-wrapping">事項</span>
+                            <input type="text" class="form-control mb-2" placeholder="請輸入待辦事項" id="todo">
+                        </div>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text mb-2" id="addon-wrapping">地點</span>
+                            <input type="text" class="form-control mb-2" placeholder="請輸入地點" id="place">
+                        </div>
+                        <div class="input-group flex-nowrap">
+                            <span class="input-group-text mb-2" id="addon-wrapping">背景顔色</span>
+                            <input type="color" class="form-control mb-2" id="color">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="save">Save</button>
@@ -228,12 +229,7 @@
         $g("button#addSchedule").addEventListener(
             "click", function () {
                 //把modal中原先儲存的value先清空
-                let dateNow = new Date();
-                $g("input#theDate").value = dateNow.toDateString();
-                $g("input#theTime").value = dateNow.toLocaleTimeString();
-                $g("input#todo").value = "";
-                $g("input#place").value = "";
-                $g("input#color").value = "#000";
+                $g("form#addModalForm").reset();
 
                 addModal.show();
             }
@@ -491,6 +487,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 //               佛祖保佑         永无BUG
+
 
     </script>
 
