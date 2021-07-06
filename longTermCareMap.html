@@ -282,6 +282,7 @@
             })
         }
         function createTable(insArray) {
+
             let thead = document.querySelector("thead");
             let tbody = document.querySelector("tbody");
             thead.innerHTML = "";
@@ -291,6 +292,7 @@
                 thead.innerText = "查無資料";
                 return;
             }
+
             let ths = document.querySelectorAll("th");
             console.log(ths);
             let titles = ["機構名稱", "服務項目", "機構地址"];
