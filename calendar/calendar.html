@@ -22,9 +22,9 @@
 
     </deco>
     <header>
-        <button id="before" class="btn" count="-1"><i class="fas fa-chevron-left"></i></button>
+        <button id="before" class="btn" data-count="-1"><i class="fas fa-chevron-left"></i></button>
         <div></div>
-        <button id="after" class="btn" count="1"><i class="fas fa-chevron-right"></i></button>
+        <button id="after" class="btn" data-count="1"><i class="fas fa-chevron-right"></i></button>
     </header>
     <div class="theContainer">
         <div class="row">
@@ -117,11 +117,11 @@
                 </div>
                 <div class="modal-body">
                     <form action="" id="addModalForm">
-                        <input type="date" class="form-control mb-2" id="theDate">
-                        <input type="time" class="form-control mb-2" id="theTime">
+                        <input type="date" class="form-control mb-2" id="theDate" required>
+                        <input type="time" class="form-control mb-2" id="theTime" required>
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text mb-2" id="addon-wrapping">事項</span>
-                            <input type="text" class="form-control mb-2" placeholder="請輸入待辦事項" id="todo">
+                            <input type="text" class="form-control mb-2" placeholder="請輸入待辦事項" id="todo" required>
                         </div>
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text mb-2" id="addon-wrapping">地點</span>
@@ -129,12 +129,12 @@
                         </div>
                         <div class="input-group flex-nowrap">
                             <span class="input-group-text mb-2" id="addon-wrapping">背景顔色</span>
-                            <input type="color" class="form-control mb-2" id="color">
+                            <input type="color" class="form-control mb-2" id="color" value="#fff700">
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="save">Save</button>
+                    <button type="submit" class="btn btn-primary" id="save">Save</button>
                 </div>
             </div>
         </div>
@@ -210,8 +210,8 @@
         //設定日期更改
         $g("header>button").forEach(btn => {
             btn.addEventListener("click", function () {
-                let originMonth = Number($g("header p").getAttribute("mon"));
-                let count = Number(this.getAttribute("count"));
+                let originMonth = Number($g("header p").dataset.mon);
+                let count = Number(this.dataset.count);
                 let newMonth = originMonth + count;
                 if ((newMonth === -1) && (count === -1)) {
                     setYear--;
@@ -246,7 +246,7 @@
             let allCol = Array.from($g("div.content"));
             allCol.forEach(c => {
                 c.innerHTML = "";
-                c.setAttribute("date", "");
+                c.dataset.date = "";
             });
             //計算當月一日星期幾
             let first = new Date(theYear, theMonth, 1);
@@ -262,7 +262,7 @@
                     return;
                 };
                 //將日期資料存在date中
-                col.setAttribute("date", `${theYear}-${(theMonth + 1).toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`);
+                col.dataset.date = `${theYear}-${(theMonth + 1).toString().padStart(2, "0")}-${i.toString().padStart(2, "0")}`;
                 let p = document.createElement("p");
                 p.innerText = i;
                 i++
@@ -317,16 +317,16 @@
             title.innerHTML = "";
             let p = document.createElement("p");
             p.innerText = `${year}, ${monthTitle}`;
-            p.setAttribute("mon", `${month}`);
+            p.dataset.mon = `${month}`;
             title.appendChild(p);
         }
         function setScheduleIn() {
             for (let key in localStorage) {
                 console.log(key);
-                let item = JSON.parse(localStorage.getItem(key));
+                let item = JSON.parse(localStorage.getItem(key)) || [];
                 console.log(item);
-                let dateDiv = document.querySelector(`div[date="${key}"]`);
-                if (item != null && dateDiv != null) {
+                let dateDiv = document.querySelector(`div[data-date="${key}"]`);
+                if (dateDiv != null) {
                     //先依照time進行排序
                     item.sort((a, b) => {
                         let aNum = Number((a.time).split(":").join(""));
@@ -343,7 +343,7 @@
                         p.setAttribute("data-bs-toggle", "tooltip");
                         p.setAttribute("data-bs-placement", "top");
                         p.setAttribute("title", "點一下修改");
-                        p.setAttribute("date", key);
+                        p.dataset.date = key;
                         p.style.setProperty("cursor", "pointer")
                         p.style.setProperty("margin-top", "3px");
                         p.addEventListener("click", function () {
@@ -392,16 +392,10 @@
 
                                 let theDate = new Date(newDate);
                                 let newKey = `${theDate.getUTCFullYear()}-${(theDate.getMonth() + 1).toString().padStart(2, "0")}-${theDate.getDate().toString().padStart(2, "0")}`;
-                                if (localStorage.getItem(newKey) == null) {
-                                    newItem = JSON.stringify([newItem]);
-                                    //更改資料形態
-                                    localStorage.setItem(newKey, newItem);
-                                } else {
-                                    let itemInStorage = JSON.parse(localStorage.getItem(newKey));
-                                    itemInStorage.push(newItem);
-                                    let itemToPut = JSON.stringify(itemInStorage);
-                                    localStorage.setItem(newKey, itemToPut);
-                                }
+                                //如果在local storage裏面就有值 沒有就是[]
+                                let newInStorage = JSON.parse(localStorage.getItem(newKey)) || [];
+                                newInStorage.push(newItem);
+                                localStorage.setItem(newKey, JSON.stringify(newInStorage));
 
                                 //重新createCalendar
                                 let year = theDate.getFullYear();
@@ -432,16 +426,11 @@
                 "place": place,
                 "color": color
             };
-            if (localStorage.getItem(date) == null) {
-                item = JSON.stringify([item]);
-                //更改資料形態
-                localStorage.setItem(date, item);
-            } else {
-                let itemInStorage = JSON.parse(localStorage.getItem(date));
-                itemInStorage.push(item);
-                let newItem = JSON.stringify(itemInStorage);
-                localStorage.setItem(date, newItem);
-            }
+            console.log(date);
+            let inStorage = JSON.parse(localStorage.getItem(date)) || [];
+            inStorage.push(item);
+            localStorage.setItem(date, JSON.stringify(inStorage));
+
             //重新製作月曆，畫面跳到新增事項當月的
             //createCalendar已經包含setScheduleIn功能
             let theDate = new Date(date);

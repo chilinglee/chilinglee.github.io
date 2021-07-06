@@ -132,8 +132,8 @@ div#editModal input#changeColor {
 }
 
 div#editModal button#saveChange {
-  background-color: var(--myPurple);
-  border-color: var(--myPurple);
+  background-color: var(--myGreen);
+  border-color: var(--myGreen);
 }
 
 div#editModal button#delete {
