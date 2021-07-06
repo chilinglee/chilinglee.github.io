@@ -322,9 +322,9 @@
         }
         function setScheduleIn() {
             for (let key in localStorage) {
-                console.log(key);
+                // console.log(key);
                 let item = JSON.parse(localStorage.getItem(key)) || [];
-                console.log(item);
+                // console.log(item);
                 let dateDiv = document.querySelector(`div[data-date="${key}"]`);
                 if (dateDiv != null) {
                     //先依照time進行排序
@@ -334,7 +334,7 @@
                         return aNum - bNum;
 
                     });
-                    console.log(item);
+                    // console.log(item);
                     item.forEach((it, index) => {
                         let p = document.createElement("p");
                         p.innerText = it.time + it.todo;
@@ -389,6 +389,10 @@
                                     "place": newPlace,
                                     "color": newColor,
                                 }
+                                if (newDate == "" || newTime == "" || newTodo == "") {
+                                    window.alert("日期、時間、事項為必填欄位");
+                                    return;
+                                }
 
                                 let theDate = new Date(newDate);
                                 let newKey = `${theDate.getUTCFullYear()}-${(theDate.getMonth() + 1).toString().padStart(2, "0")}-${theDate.getDate().toString().padStart(2, "0")}`;
@@ -426,7 +430,11 @@
                 "place": place,
                 "color": color
             };
-            console.log(date);
+            if (date == "" || time == "" || todo == "") {
+                window.alert("日期、時間、事項為必填欄位");
+                return;
+            }
+
             let inStorage = JSON.parse(localStorage.getItem(date)) || [];
             inStorage.push(item);
             localStorage.setItem(date, JSON.stringify(inStorage));
