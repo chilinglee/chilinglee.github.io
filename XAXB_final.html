@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="_reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>終極密碼</title>
+    <script src="https://kit.fontawesome.com/de0f812dc0.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #EFEE9D;
+        }
+
+
+
+        .btnArea {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px auto;
+            max-width: 320px;
+        }
+
+        .btnArea img {
+            width: 60px;
+            height: 60px;
+            display: block;
+        }
+
+        .btnArea img:hover {
+            cursor: pointer;
+        }
+
+        .btnArea p {
+            margin: 10px auto;
+        }
+
+        .wrap {
+            background-color: #DBC6EB;
+            border: #bc81e9 2px solid;
+            border-radius: 10px;
+            width: 320px;
+            height: 540px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        #screen {
+            width: 75%;
+            height: 20%;
+            background-color: #b6d0fa;
+            border-radius: 5px;
+            border: #79aafa 2px solid;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: #bc81e9;
+        }
+
+        #screen input {
+            background-color: #b6d0fa;
+            border: none;
+        }
+
+        #keyboard {
+            width: 80%;
+            height: 60%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: space-evenly;
+
+        }
+
+        button {
+            border: 0px;
+            background-color: #D1EAA3;
+            border: #b2e25a 2px solid;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            color: #bc81e9;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button:last-child {
+            background-color: #fdc3bc;
+            color: #000;
+            border: rgb(224, 145, 161) 2px solid;
+        }
+
+        #hint {
+            text-align: center;
+            font-size: 24px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        #result {
+            width: 100%;
+            max-height: 540px;
+            overflow: scroll;
+            margin: auto;
+            font-family: 'Roboto', sans-serif;
+            font-size: 18px;
+        }
+
+        #result td {
+            text-align: center;
+            border-bottom: #B2B1B9 1px solid;
+            margin-bottom: 3px;
+        }
+
+        #result td p span {
+            display: inline-block;
+            background-color: aquamarine;
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 18px;
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-sm">
+        <div class="row">
+
+            <div class="col-6">
+                <div class="btnArea">
+                    <div>
+                        <img src="https://image.flaticon.com/icons/png/512/4305/4305581.png" alt="start" id="start">
+                        <p>開始遊戲</p>
+                    </div>
+                    <div>
+                        <img src="https://image.flaticon.com/icons/png/512/5278/5278684.png" alt="restart" id="restart">
+                        <p>重新開始</p>
+                    </div>
+                    <div>
+                        <img src="https://image.flaticon.com/icons/png/512/5335/5335720.png" alt="answer" id="answer">
+                        <p>看答案</p>
+                    </div>
+                </div>
+                <div class="wrap">
+                    <div id="screen">
+                        <input type="text" id="hint" class="m-0" maxlength="4">
+                    </div>
+                    <div id="keyboard">
+                        <button data-content="1">1</button>
+                        <button data-content="2">2</button>
+                        <button data-content="3">3</button>
+                        <button data-content="4">4</button>
+                        <button data-content="5">5</button>
+                        <button data-content="6">6</button>
+                        <button data-content="7">7</button>
+                        <button data-content="8">8</button>
+                        <button data-content="9">9</button>
+                        <button data-content="del"><i class="fas fa-long-arrow-alt-left"></i></button>
+                        <button data-content="0">0</button>
+                        <button data-content="go">猜</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 d-flex flex-column justify-content-center">
+                <table id="result"></table>
+            </div>
+        </div>
+    </div>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+        crossorigin="anonymous"></script>
+    <script>
+        const hint = $g("#hint");
+        const btns = $g("button");
+        const table = $g("table");
+        window.onload = function () {
+            hint.value = "請按開始遊戲";
+
+            //數字鍵盤功能
+            btns.forEach(function (btn) {
+                btn.disabled = true;
+                btn.addEventListener("click", function () {
+                    if (btn.dataset.content == "del") {
+                        let text = hint.value;
+                        hint.value = text.slice(0, text.length - 1);
+                    } else if (btn.dataset.content == "go") {
+                        judge();
+                    } else {
+                        //不能輸入超過四個數字
+                        hint.value += hint.value.length >= 4 ? "" : btn.dataset.content;
+                    }
+                });
+            });
+        };
+
+
+        //遊戲開始
+        let key = [];
+        $g("#start").addEventListener("click", function () {
+            hint.value = "";
+            btns.forEach(function (btn) {
+                btn.disabled = false;
+            });
+            let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            key = shuffler(numbers).splice(0, 4);
+        });
+
+        //重新開始
+        $g("#restart").addEventListener("click", function () {
+            restart();
+        });
+
+        //看答案
+        $g("#answer").addEventListener("click", function () {
+            window.alert(`答案是${key.join("")}`);
+        });
+
+        function $g(element) {
+            let found = document.querySelectorAll(element);
+            return found.length == 1 ? found[0] : found;
+        }
+        function shuffler(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * i);
+                let i_origin = array[i];
+                let j_origin = array[j];
+                array[i] = j_origin;
+                array[j] = i_origin;
+            }
+            return array;
+        }
+        function judge() {
+            //計算1A2B結果
+            let A = 0;
+            let B = 0;
+            let answer = hint.value.split("");
+            answer.forEach((number, index) => {
+                let find = key.indexOf(Number(number))
+                console.log(find);
+                if (find != -1) {
+                    if (find == index) {
+                        A++;
+                    } else {
+                        B++;
+                    }
+                }
+            });
+            let tr = document.createElement("tr");
+            let td = document.createElement("td");
+            td.innerHTML = `<p><span>${A}A${B}B</span>&emsp;${hint.value}</p>`;
+            tr.appendChild(td)
+            table.appendChild(tr);
+            hint.value = "";
+
+            if (A == 4) {
+                window.alert("恭喜答對！");
+                restart();
+            }
+
+        }
+        function restart() {
+            hint.value = "請按開始遊戲";
+            //數字鍵盤功能
+            btns.forEach(function (btn) {
+                btn.disabled = true;
+            });
+            $g("table").innerHTML = "";
+        }
+    </script>
+
+</body>
+
+</html>
